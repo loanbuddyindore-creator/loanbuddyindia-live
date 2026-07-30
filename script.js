@@ -2,7 +2,7 @@
    Loan Buddy India - Vanilla JavaScript Engine
    Handles EMI Calculator, Eligibility Checker, Career Application, Partner Registration, Modals & Forms
 */
-
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyk6bcave1L4cXK5YqFDuBoc8btWKpayK3RuB-BJuMzY1I9_FBTHJ41WJ5KFiBI03Vx/exec";
 document.addEventListener('DOMContentLoaded', function () {
     // Initial Calculations
     calculateEmi();
