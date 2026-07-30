@@ -384,12 +384,43 @@ function handleContactSubmit(e) {
     e.target.reset();
 }
 
-function handleModalSubmit(e) {
+async function handleModalSubmit(e) {
     e.preventDefault();
-    alert('Application Submitted Successfully! Our Palasia, Indore loan officer will reach out to you shortly.');
-    closeModal();
-}
 
+    const data = {
+        fullName: document.getElementById("modalName").value,
+        mobile: document.getElementById("modalPhone").value,
+        email: "",
+        city: document.getElementById("modalCity").value,
+        loanType: "Quick Loan",
+        amount: "",
+        message: "Apply Now Popup"
+    };
+
+    try {
+
+        const response = await fetch(SCRIPT_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        alert("Application Submitted Successfully!");
+
+        e.target.reset();
+        closeModal();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Submission Failed");
+    }
+}
 /* ==================== LOAN COMPARISON MATRIX DATA & LOGIC ==================== */
 const LOAN_PRODUCTS_DATA = {
     personal: {
