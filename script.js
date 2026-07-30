@@ -312,13 +312,37 @@ function closeLegalModal() {
 }
 
 // Form Handlers
-function handleHeroSubmit(e) {
+async function handleHeroSubmit(e) {
     e.preventDefault();
-    const loanType = document.getElementById('heroLoanType').value;
-    const phone = document.getElementById('heroPhone').value;
-    alert('Thank you! Your quote request for ' + loanType + ' is received. Our Indore loan advisor will contact you shortly on +91 ' + phone);
-}
 
+    const data = {
+        fullName: "Website Lead",
+        mobile: document.getElementById("heroPhone").value,
+        city: "Indore",
+        loanType: document.getElementById("heroLoanType").value,
+        amount: document.getElementById("heroAmountRange").value
+    };
+
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        alert("Lead Submitted Successfully!");
+        e.target.reset();
+
+    } catch (error) {
+        console.error(error);
+        alert("Submission Failed!");
+    }
+}
 function handleEnquirySubmit(e) {
     e.preventDefault();
     const name = document.getElementById('enquiryName').value;
