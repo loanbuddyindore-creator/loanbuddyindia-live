@@ -325,16 +325,29 @@ async function handleHeroSubmit(e) {
 
     try {
         const response = await fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data)
+});
+try {
 
-        const result = await response.json();
-        console.log(result);
+    await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(data)
+    });
 
+    alert("Lead Submitted Successfully!");
+
+    e.target.reset();
+
+} catch (error) {
+
+    console.error(error);
+
+    alert("Submission Failed");
+
+}
         alert("Lead Submitted Successfully!");
         e.target.reset();
 
