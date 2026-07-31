@@ -1401,6 +1401,10 @@ input[type="range"] {
     padding: 20px;
 }
 
+.modal-overlay.active {
+    display: flex;
+}
+
 .modal-box {
     background: var(--white);
     padding: 30px;
@@ -1702,6 +1706,18 @@ input[type="range"] {
     .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .nav-links { display: none; }
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--royal-blue);
+        padding: 16px 20px;
+        gap: 14px;
+        box-shadow: var(--shadow-md);
+    }
     .mobile-toggle { display: block; }
     .hide-mobile-email { display: none; }
 }
