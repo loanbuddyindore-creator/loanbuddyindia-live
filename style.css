@@ -3745,13 +3745,16 @@ input[type="range"] {
     <script src="script.js" defer></script>
 </body>
 </html>
-select {
-    -webkit-appearance: none;
-    appearance: none;
-    color: #fff !important;
+.refer-form select.form-control {
+    color: #ffffff !important;
+    background: rgba(255,255,255,0.12) !important;
 }
 
-option {
-    color: #000 !important;
-    background: #fff !important;
+.refer-form select.form-control option {
+    color: #000000 !important;
+    background: #ffffff !important;
+}
+
+.refer-form select.form-control:focus {
+    color: #ffffff !important;
 }
