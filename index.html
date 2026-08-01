@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Buddy India | Premier Financial Advisory & Loans in Indore & Pan-India</title>
     <!-- Meta Descriptions for SEO -->
-    <meta name="description" content="Loan Buddy India offers Personal Loans, Business Loans, Home Loans, LAP, & Working Capital with lowest interest rates from 35+ Banks & NBFCs in Indore and across India.">
-    <meta name="keywords" content="Loan Buddy India, Personal Loan Indore, Business Loan Indore, Home Loan Indore, EMI Calculator, Become a Loan Partner, Loan Eligibility Checker, Sachchidanand Dwivedi, Pankaj Jain">
+    <meta name="description" content="Loan Buddy India offers Personal & Business Loans from 9.99% p.a., Home Loans from 7.10% p.a., LAP & Working Capital with lowest interest rates from 35+ Banks & NBFCs in Indore and across India.">
+    <meta name="keywords" content="Loan Buddy India, Personal Loan Indore, Business Loan Indore, Home Loan Indore, EMI Calculator, Become a Loan Partner, Loan Eligibility Checker, Refer and Earn Loan, Sachchidanand Dwivedi, Pankaj Jain">
     <meta name="author" content="Loan Buddy India">
-    
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL (update to your live domain) -->
+    <link rel="canonical" href="https://www.loanbuddyindia.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Loan Buddy India">
+    <meta property="og:title" content="Loan Buddy India | Premier Financial Advisory & Loans in Indore & Pan-India">
+    <meta property="og:description" content="Compare and secure Personal, Business, Home & Property Loans from 35+ Banks & NBFCs. 100% free advisory, doorstep service, express disbursal.">
+    <meta property="og:url" content="https://www.loanbuddyindia.com/">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Loan Buddy India | Premier Financial Advisory & Loans in Indore & Pan-India">
+    <meta name="twitter:description" content="Compare and secure Personal, Business, Home & Property Loans from 35+ Banks & NBFCs. 100% free advisory, doorstep service, express disbursal.">
+
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="style.css">
     
@@ -17,6 +34,78 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Organization Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FinancialService",
+        "name": "Loan Buddy India",
+        "description": "Premier financial advisory & loan consultancy offering Personal, Business, Home, LAP and Working Capital loans through 35+ partner Banks & NBFCs.",
+        "areaServed": "IN",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "308 Sterling Arcade, Front of Abhay Prashal",
+            "addressLocality": "Indore",
+            "addressRegion": "Madhya Pradesh",
+            "postalCode": "452001",
+            "addressCountry": "IN"
+        },
+        "telephone": "+91-9907704049",
+        "email": "loanbuddy.indore@gmail.com",
+        "priceRange": "Free Advisory Service"
+    }
+    </script>
+
+    <!-- FAQ Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Why should I apply through Loan Buddy India instead of directly visiting a bank?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Loan Buddy India compares deals across 35+ Banks & NBFCs, negotiates the lowest interest rate, handles doorstep documentation, and provides 100% free service."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Loan Buddy India charge any upfront consultant fee?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, the service is 100% free for clients as Loan Buddy India is an authorized direct selling agent (DSA) of partner banks."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What minimum CIBIL score is required for fast loan approval?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A CIBIL score of 700+ typically gets instant approval and the best rates, though NBFC partners can still approve loans with lower scores based on income and turnover."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How can I become a Loan Partner / DSA with Loan Buddy India?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Fill out the Become a Loan Partner form on the website and the partner onboarding manager will explain the commission structure and register you at zero upfront cost."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you serve clients outside Indore?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Loan Buddy India serves clients across all of India through a digital, paperless loan processing system."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 
@@ -54,6 +143,7 @@
                 <a href="#calculator">EMI Calculator</a>
                 <a href="#eligibility">Eligibility Checker</a>
                 <a href="#partner">Become a Partner</a>
+                <a href="#refer-earn">Refer & Earn</a>
                 <a href="#careers">Careers</a>
                 <a href="#testimonials">Testimonials</a>
                 <a href="#contact">Contact</a>
@@ -96,8 +186,9 @@
                     <p>Compare top 35+ lenders in 2 minutes</p>
                 </div>
                 <form id="heroQuoteForm" onsubmit="handleHeroSubmit(event)">
+                    <input type="text" id="heroHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-group">
-                        <label>Select Loan Type</label>
+                        <label for="heroLoanType">Select Loan Type</label>
                         <select id="heroLoanType" class="form-control" required>
                             <option value="Personal Loan">Personal Loan</option>
                             <option value="Business Loan">Business Loan </option>
@@ -118,7 +209,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Mobile Number</label>
+                        <label for="heroPhone">Mobile Number</label>
                         <input type="tel" id="heroPhone" class="form-control" placeholder="Enter 10 digit number" required maxlength="10">
                     </div>
 
@@ -146,6 +237,17 @@
                 <h2 class="counter" data-target="99">98.8%</h2>
                 <p>Approval Rate</p>
             </div>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST BADGES STRIP ==================== -->
+    <section class="trust-strip" id="trust-strip" aria-label="Trust Indicators">
+        <div class="container trust-strip-content">
+            <div class="trust-badge"><i class="fa-solid fa-shield-halved"></i> RBI Guideline Compliant</div>
+            <div class="trust-badge"><i class="fa-solid fa-lock"></i> Bank-Grade Data Security</div>
+            <div class="trust-badge"><i class="fa-solid fa-certificate"></i> ISO 27001 Data Practices</div>
+            <div class="trust-badge"><i class="fa-solid fa-user-shield"></i> 100% Confidential Process</div>
+            <div class="trust-badge"><i class="fa-solid fa-star"></i> 15,000+ Verified Borrowers</div>
         </div>
     </section>
 
@@ -185,24 +287,25 @@
 
                 <div class="enquiry-form-col">
                     <form id="instantEnquiryForm" onsubmit="handleEnquirySubmit(event)">
+                    <input type="text" id="enquiryHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <h3>Submit Loan Enquiry</h3>
                         <p class="form-subtext">Instant bank eligibility check across 35+ lenders</p>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Full Name *</label>
+                                <label for="enquiryName">Full Name *</label>
                                 <input type="text" id="enquiryName" class="form-control" required placeholder="e.g. Rahul Sharma">
                             </div>
 
                             <div class="form-group">
-                                <label>Mobile Number *</label>
+                                <label for="enquiryMobile">Mobile Number *</label>
                                 <input type="tel" id="enquiryMobile" class="form-control" required maxlength="10" placeholder="10 digit mobile number">
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Loan Type *</label>
+                                <label for="enquiryType">Loan Type *</label>
                                 <select id="enquiryType" class="form-control" required>
                                     <option value="">Select Loan Type</option>
                                     <option value="Personal Loan">Personal Loan</option>
@@ -216,19 +319,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Loan Amount Required (₹) *</label>
+                                <label for="enquiryAmount">Loan Amount Required (₹) *</label>
                                 <input type="number" id="enquiryAmount" class="form-control" required placeholder="e.g. 500000" min="10000">
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Monthly Net Income (₹) *</label>
+                                <label for="enquiryIncome">Monthly Net Income (₹) *</label>
                                 <input type="number" id="enquiryIncome" class="form-control" required placeholder="e.g. 45000" min="5000">
                             </div>
 
                             <div class="form-group">
-                                <label>City *</label>
+                                <label for="enquiryCity">City *</label>
                                 <input type="text" id="enquiryCity" class="form-control" required placeholder="e.g. Indore" value="Indore">
                             </div>
                         </div>
@@ -255,12 +358,12 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-user-check"></i></div>
                     <h3>Personal Loan</h3>
-                    <span class="rate-tag"> </span>
+                    <span class="rate-tag">9.99% p.a. onwards</span>
                     <p>Collateral-free instant cash loans up to ₹50 Lakhs for weddings, travel, medical or debt consolidation.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Zero Collateral Needed</li>
                         <li><i class="fa-solid fa-check"></i> Up to ₹50 Lakh Sanction</li>
-                        <li><i class="fa-solid fa-check"></i> 1 to 5 Years Tenure</li>
+                        <li><i class="fa-solid fa-check"></i> 1 to 8 Years Tenure</li>
                     </ul>
                     <button class="btn btn-primary btn-block" onclick="openModal('Personal Loan')">Apply Now <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
@@ -270,7 +373,7 @@
                     <div class="popular-badge">Popular</div>
                     <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
                     <h3>Business Loan</h3>
-                    <span class="rate-tag"></span>
+                    <span class="rate-tag">9.99% p.a. onwards</span>
                     <p>Unsecured business capital up to ₹1 Crore for MSMEs, retailers, traders, manufacturers, doctors & CAs.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Unsecured Business Funding</li>
@@ -284,7 +387,7 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-house"></i></div>
                     <h3>Home Loan</h3>
-                    <span class="rate-tag"></span>
+                    <span class="rate-tag">Starting from 7.10% p.a.</span>
                     <p>Buy your dream home, construction plot, or flat with industry-lowest interest rates and 30-year tenure.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Up to 90% Property Financing</li>
@@ -298,7 +401,7 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-building-columns"></i></div>
                     <h3>Loan Against Property</h3>
-                    <span class="rate-tag"></span>
+                    <span class="rate-tag">Starting from 9.00% p.a.</span>
                     <p>Unlock high funds against residential, commercial or industrial property at low interest rates.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Up to 75% LTV Ratio</li>
@@ -326,7 +429,7 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <h3>Working Capital & CC/OD</h3>
-                    <span class="rate-tag"></span>
+                    <span class="rate-tag">Starting from 10.50% p.a.</span>
                     <p>Cash credit (CC), Overdraft (OD) limits, Letter of Credit & Bank Guarantees for smooth business cash flow.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Pay Interest Only on Utilized Amount</li>
@@ -334,6 +437,44 @@
                         <li><i class="fa-solid fa-check"></i> Fast Annual Renewals</li>
                     </ul>
                     <button class="btn btn-primary btn-block" onclick="openModal('Working Capital')">Apply Now <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LOAN PROCESS TIMELINE ==================== -->
+    <section class="process-section section-padding" id="process">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title"><i class="fa-solid fa-route"></i> Simple & Transparent</span>
+                <h2>How Loan Buddy India Works</h2>
+                <p>From enquiry to disbursal in 4 easy, fully-tracked steps.</p>
+            </div>
+
+            <div class="timeline-grid">
+                <div class="timeline-step">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-icon"><i class="fa-solid fa-file-signature"></i></div>
+                    <h3>Submit Enquiry</h3>
+                    <p>Share your loan requirement via our Instant Enquiry form, WhatsApp, or a quick call.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>Eligibility & Rate Match</h3>
+                    <p>We match your profile against 35+ Banks & NBFCs to find the lowest possible rate.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+                    <h3>Doorstep Documentation</h3>
+                    <p>Our loan manager collects documents and handles bank login at your convenience.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
+                    <h3>Approval & Disbursal</h3>
+                    <p>Get sanctioned and receive funds directly in your account within 24-48 hours.</p>
                 </div>
             </div>
         </div>
@@ -362,13 +503,13 @@
                 <div class="compare-select-group">
                     <label for="compareSelect1"><i class="fa-solid fa-circle-1 text-gold"></i> First Loan Product</label>
                     <select id="compareSelect1" class="form-control compare-select" onchange="updateLoanComparison()">
-                        <option value="personal">Personal Loan ( )</option>
-                        <option value="business">Business Loan </option>
-                        <option value="home">Home Loan </option>
-                        <option value="lap">Loan Against Property </option>
+                        <option value="personal">Personal Loan (9.99% onwards)</option>
+                        <option value="business">Business Loan (9.99% onwards)</option>
+                        <option value="home">Home Loan (From 7.10%)</option>
+                        <option value="lap">Loan Against Property (From 9.00%)</option>
                         <option value="balance_transfer">Balance Transfer (Save up to 2.5%)</option>
-                        <option value="working_capital">Working Capital & CC/OD </option>
-                        <option value="used_car">Used Car Loan </option>
+                        <option value="working_capital">Working Capital & CC/OD (From 10.50%)</option>
+                        <option value="used_car">Used Car Loan (From 7.15%)</option>
                     </select>
                 </div>
 
@@ -381,13 +522,13 @@
                 <div class="compare-select-group">
                     <label for="compareSelect2"><i class="fa-solid fa-circle-2 text-navy"></i> Second Loan Product</label>
                     <select id="compareSelect2" class="form-control compare-select" onchange="updateLoanComparison()">
-                        <option value="personal">Personal Loan ( )</option>
-                        <option value="business">Business Loan </option>
-                        <option value="home" selected>Home Loan </option>
-                        <option value="lap">Loan Against Property </option>
+                        <option value="personal">Personal Loan (9.99% onwards)</option>
+                        <option value="business">Business Loan (9.99% onwards)</option>
+                        <option value="home" selected>Home Loan (From 7.10%)</option>
+                        <option value="lap">Loan Against Property (From 9.00%)</option>
                         <option value="balance_transfer">Balance Transfer (Save up to 2.5%)</option>
-                        <option value="working_capital">Working Capital & CC/OD </option>
-                        <option value="used_car">Used Car Loan </option>
+                        <option value="working_capital">Working Capital & CC/OD (From 10.50%)</option>
+                        <option value="used_car">Used Car Loan (From 7.15%)</option>
                     </select>
                 </div>
             </div>
@@ -428,7 +569,7 @@
                 <div class="calc-controls">
                     <div class="calc-group">
                         <div class="calc-header">
-                            <label><i class="fa-solid fa-indian-rupee-sign"></i> Loan Amount (₹)</label>
+                            <label for="calcAmountInput"><i class="fa-solid fa-indian-rupee-sign"></i> Loan Amount (₹)</label>
                             <input type="number" id="calcAmountInput" value="1000000" min="10000" max="50000000" step="10000" oninput="syncAmountInput(this.value)">
                         </div>
                         <input type="range" id="calcAmountSlider" min="50000" max="50000000" step="50000" value="1000000" oninput="syncAmountSlider(this.value)">
@@ -437,7 +578,7 @@
 
                     <div class="calc-group">
                         <div class="calc-header">
-                            <label><i class="fa-solid fa-percent"></i> Interest Rate (% p.a.)</label>
+                            <label for="calcRateInput"><i class="fa-solid fa-percent"></i> Interest Rate (% p.a.)</label>
                             <input type="number" id="calcRateInput" step="0.1" min="5" max="25" value="8.5" oninput="syncRateInput(this.value)">
                         </div>
                         <input type="range" id="calcRateSlider" min="5" max="25" step="0.1" value="8.5" oninput="syncRateSlider(this.value)">
@@ -446,7 +587,7 @@
 
                     <div class="calc-group">
                         <div class="calc-header">
-                            <label><i class="fa-solid fa-calendar-days"></i> Loan Tenure (Years)</label>
+                            <label for="calcTenureInput"><i class="fa-solid fa-calendar-days"></i> Loan Tenure (Years)</label>
                             <input type="number" id="calcTenureInput" min="1" max="30" value="15" oninput="syncTenureInput(this.value)">
                         </div>
                         <input type="range" id="calcTenureSlider" min="1" max="30" step="1" value="15" oninput="syncTenureSlider(this.value)">
@@ -514,12 +655,12 @@
                     <form id="eligibilityForm" onsubmit="calculateEligibility(event)">
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Your Age (Years)</label>
+                                <label for="elAge">Your Age (Years)</label>
                                 <input type="number" id="elAge" class="form-control" value="30" min="21" max="65" required oninput="calculateEligibility()">
                             </div>
 
                             <div class="form-group">
-                                <label>Employment Type</label>
+                                <label for="elEmpType">Employment Type</label>
                                 <select id="elEmpType" class="form-control" onchange="calculateEligibility()">
                                     <option value="salaried">Salaried Employee</option>
                                     <option value="self-employed">Self-Employed / Business Owner</option>
@@ -530,24 +671,24 @@
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Net Monthly Income (₹)</label>
+                                <label for="elIncome">Net Monthly Income (₹)</label>
                                 <input type="number" id="elIncome" class="form-control" value="65000" min="10000" step="5000" required oninput="calculateEligibility()">
                             </div>
 
                             <div class="form-group">
-                                <label>Current Monthly EMIs (₹)</label>
+                                <label for="elExistingEmi">Current Monthly EMIs (₹)</label>
                                 <input type="number" id="elExistingEmi" class="form-control" value="10000" min="0" step="1000" required oninput="calculateEligibility()">
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Expected Interest Rate (% p.a.)</label>
+                                <label for="elRate">Expected Interest Rate (% p.a.)</label>
                                 <input type="number" id="elRate" class="form-control" value="8.5" step="0.1" min="5" max="25" required oninput="calculateEligibility()">
                             </div>
 
                             <div class="form-group">
-                                <label>Desired Tenure (Years)</label>
+                                <label for="elTenure">Desired Tenure (Years)</label>
                                 <input type="number" id="elTenure" class="form-control" value="20" min="1" max="30" required oninput="calculateEligibility()">
                             </div>
                         </div>
@@ -585,6 +726,56 @@
                         <p>Want to maximize your loan sanction? Our advisors help negotiate additional top-ups!</p>
                         <button class="btn btn-primary btn-block" onclick="openModal('Eligibility Sanction')"><i class="fa-solid fa-paper-plane"></i> Apply For This Limit</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DOCUMENT CHECKLIST SECTION ==================== -->
+    <section class="documents-section section-padding" id="documents">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title"><i class="fa-solid fa-clipboard-check"></i> Be Application-Ready</span>
+                <h2>Required Document Checklist</h2>
+                <p>Keep these documents handy to speed up your loan approval and disbursal.</p>
+            </div>
+
+            <div class="document-tabs" role="tablist">
+                <button type="button" class="doc-tab active" onclick="switchDocumentTab('salaried', this)">Salaried Employee</button>
+                <button type="button" class="doc-tab" onclick="switchDocumentTab('self-employed', this)">Self-Employed</button>
+                <button type="button" class="doc-tab" onclick="switchDocumentTab('business', this)">Business Owner</button>
+            </div>
+
+            <div class="document-panel-wrapper">
+                <div class="document-panel active" id="doc-salaried">
+                    <ul class="document-list">
+                        <li><i class="fa-solid fa-id-card"></i> PAN Card & Aadhaar Card</li>
+                        <li><i class="fa-solid fa-file-invoice-dollar"></i> Last 3 Months' Salary Slips</li>
+                        <li><i class="fa-solid fa-building-columns"></i> Last 6 Months' Bank Statement</li>
+                        <li><i class="fa-solid fa-file-lines"></i> Latest Form 16 / ITR</li>
+                        <li><i class="fa-solid fa-house-chimney"></i> Address Proof (Utility Bill / Rent Agreement)</li>
+                        <li><i class="fa-solid fa-image-portrait"></i> Passport Size Photographs</li>
+                    </ul>
+                </div>
+                <div class="document-panel" id="doc-self-employed">
+                    <ul class="document-list">
+                        <li><i class="fa-solid fa-id-card"></i> PAN Card & Aadhaar Card</li>
+                        <li><i class="fa-solid fa-file-invoice"></i> Last 2 Years' ITR with Computation</li>
+                        <li><i class="fa-solid fa-building-columns"></i> Last 12 Months' Bank Statement</li>
+                        <li><i class="fa-solid fa-briefcase"></i> Business Proof / Registration Certificate</li>
+                        <li><i class="fa-solid fa-house-chimney"></i> Address Proof (Utility Bill / Rent Agreement)</li>
+                        <li><i class="fa-solid fa-image-portrait"></i> Passport Size Photographs</li>
+                    </ul>
+                </div>
+                <div class="document-panel" id="doc-business">
+                    <ul class="document-list">
+                        <li><i class="fa-solid fa-id-card"></i> PAN Card (Individual & Firm/Company)</li>
+                        <li><i class="fa-solid fa-file-invoice"></i> Last 2-3 Years' ITR & Audited Financials</li>
+                        <li><i class="fa-solid fa-building-columns"></i> Last 12 Months' Current A/C Statement</li>
+                        <li><i class="fa-solid fa-receipt"></i> GST Returns (Last 12 Months)</li>
+                        <li><i class="fa-solid fa-file-contract"></i> Company/Firm Registration & KYC Documents</li>
+                        <li><i class="fa-solid fa-image-portrait"></i> Passport Size Photographs of Partners/Directors</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -636,34 +827,35 @@
 
                 <div class="partner-form-col">
                     <form id="partnerForm" onsubmit="handlePartnerSubmit(event)">
+                    <input type="text" id="partnerHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <h3>Partner Registration Form</h3>
                         <p class="form-subtext">Register today and start earning high commissions!</p>
 
                         <div class="form-group">
-                            <label>Full Name *</label>
+                            <label for="partnerName">Full Name *</label>
                             <input type="text" id="partnerName" class="form-control" required placeholder="Enter full name">
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Mobile Number *</label>
+                                <label for="partnerMobile">Mobile Number *</label>
                                 <input type="tel" id="partnerMobile" class="form-control" required maxlength="10" placeholder="10 digit number">
                             </div>
 
                             <div class="form-group">
-                                <label>Email Address *</label>
+                                <label for="partnerEmail">Email Address *</label>
                                 <input type="email" id="partnerEmail" class="form-control" required placeholder="name@email.com">
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>City *</label>
+                                <label for="partnerCity">City *</label>
                                 <input type="text" id="partnerCity" class="form-control" required placeholder="e.g. Indore" value="Indore">
                             </div>
 
                             <div class="form-group">
-                                <label>Profession *</label>
+                                <label for="partnerProfession">Profession *</label>
                                 <select id="partnerProfession" class="form-control" required>
                                     <option value="">Select Profession</option>
                                     <option value="Direct Selling Agent (DSA)">Direct Selling Agent (DSA)</option>
@@ -678,7 +870,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Experience Level *</label>
+                            <label for="partnerExperience">Experience Level *</label>
                             <select id="partnerExperience" class="form-control" required>
                                 <option value="">Select Experience</option>
                                 <option value="Fresher / < 1 Year">Fresher / Less than 1 Year</option>
@@ -689,11 +881,129 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Message / Additional Detail</label>
+                            <label for="partnerMessage">Message / Additional Detail</label>
                             <textarea id="partnerMessage" class="form-control" rows="3" placeholder="Tell us briefly about your client network or background..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-gold btn-block btn-lg"><i class="fa-solid fa-handshake"></i> Become a Partner</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REFER & EARN SECTION ==================== -->
+    <section class="refer-section section-padding" id="refer-earn">
+        <div class="container">
+            <div class="section-title light-title">
+                <span class="sub-title text-gold"><i class="fa-solid fa-gift"></i> Earn With Every Referral</span>
+                <h2>Refer & Earn</h2>
+                <p>Know someone who needs a loan? Refer them to Loan Buddy India and earn attractive payouts once their loan is disbursed.</p>
+            </div>
+
+            <div class="refer-grid">
+                <div class="refer-info-col">
+                    <div class="refer-glass-card">
+                        <div class="refer-step">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <div>
+                                <h4>Step 1: Refer</h4>
+                                <p>Share your friend or family member's loan requirement with us.</p>
+                            </div>
+                        </div>
+                        <div class="refer-step">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                            <div>
+                                <h4>Step 2: We Process</h4>
+                                <p>Our team contacts them and manages the entire loan process end-to-end.</p>
+                            </div>
+                        </div>
+                        <div class="refer-step">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                            <div>
+                                <h4>Step 3: You Earn</h4>
+                                <p>Get your referral payout directly once the loan is successfully disbursed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="refer-form-col">
+                    <form id="referForm" class="refer-glass-card refer-form" onsubmit="handleReferSubmit(event)">
+                    <input type="text" id="referHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <h3>Submit a Referral</h3>
+                        <p class="form-subtext">Fill in your details and the customer's details below</p>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="referCustomerName">Customer Name *</label>
+                                <input type="text" id="referCustomerName" class="form-control" required placeholder="Person you're referring">
+                            </div>
+                            <div class="form-group">
+                                <label for="referCustomerMobile">Customer Mobile *</label>
+                                <input type="tel" id="referCustomerMobile" class="form-control" required maxlength="10" placeholder="10 digit number">
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="referLoanCategory">Loan Category *</label>
+                                <select id="referLoanCategory" class="form-control" required>
+                                    <option value="">Select Loan Type</option>
+                                    <option value="Personal Loan">Personal Loan</option>
+                                    <option value="Business Loan">Business Loan</option>
+                                    <option value="Home Loan">Home Loan</option>
+                                    <option value="Loan Against Property">Loan Against Property</option>
+                                    <option value="Balance Transfer">Balance Transfer</option>
+                                    <option value="Working Capital">Working Capital / CC-OD</option>
+                                    <option value="Vehicle Loan">Used Car / Vehicle Loan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="referLoanAmount">Loan Amount Required (₹) *</label>
+                                <input type="number" id="referLoanAmount" class="form-control" required min="10000" placeholder="e.g. 500000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referCity">Customer City *</label>
+                            <input type="text" id="referCity" class="form-control" required placeholder="e.g. Indore" value="Indore">
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="referrerName">Your Name (Referrer) *</label>
+                                <input type="text" id="referrerName" class="form-control" required placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="referrerMobile">Your Mobile (Referrer) *</label>
+                                <input type="tel" id="referrerMobile" class="form-control" required maxlength="10" placeholder="10 digit number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referrerRelation">Relationship With Customer</label>
+                            <select id="referrerRelation" class="form-control">
+                                <option value="Friend">Friend</option>
+                                <option value="Family Member">Family Member</option>
+                                <option value="Colleague">Colleague</option>
+                                <option value="Business Associate">Business Associate</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referRemarks">Remarks (Optional)</label>
+                            <textarea id="referRemarks" class="form-control" rows="2" placeholder="Anything else we should know?"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold btn-block btn-lg"><i class="fa-solid fa-paper-plane"></i> Generate Referral</button>
+                        <div class="secure-note"><i class="fa-solid fa-lock"></i> Your referral details are kept 100% confidential.</div>
+
+                        <div class="refer-code-box" id="referCodeBox" style="display:none;">
+                            <span>Your Referral Reference ID</span>
+                            <strong id="referCodeValue">LBI-000000</strong>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -754,33 +1064,34 @@
                     </div>
 
                     <form id="careerForm" onsubmit="handleCareerSubmit(event)">
+                    <input type="text" id="careerHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Full Name *</label>
+                                <label for="careerName">Full Name *</label>
                                 <input type="text" id="careerName" class="form-control" required placeholder="Enter full name">
                             </div>
 
                             <div class="form-group">
-                                <label>Mobile Number *</label>
+                                <label for="careerMobile">Mobile Number *</label>
                                 <input type="tel" id="careerMobile" class="form-control" required maxlength="10" placeholder="10 digit number">
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Email Address *</label>
+                                <label for="careerEmail">Email Address *</label>
                                 <input type="email" id="careerEmail" class="form-control" required placeholder="name@email.com">
                             </div>
 
                             <div class="form-group">
-                                <label>Current City *</label>
+                                <label for="careerCity">Current City *</label>
                                 <input type="text" id="careerCity" class="form-control" required placeholder="e.g. Indore" value="Indore">
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
-                                <label>Position Applied For *</label>
+                                <label for="careerPosition">Position Applied For *</label>
                                 <select id="careerPosition" class="form-control" required>
                                     <option value="">Select Position</option>
                                     <option value="Senior Loan Relationship Manager">Senior Loan Relationship Manager</option>
@@ -792,7 +1103,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Experience (Years) *</label>
+                                <label for="careerExperience">Experience (Years) *</label>
                                 <select id="careerExperience" class="form-control" required>
                                     <option value="">Select Experience</option>
                                     <option value="0-1 Year (Fresher)">Fresher / 0-1 Year</option>
@@ -804,7 +1115,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label><i class="fa-solid fa-file-pdf text-gold"></i> Upload Resume (PDF / DOC) *</label>
+                            <label for="careerResume"><i class="fa-solid fa-file-pdf text-gold"></i> Upload Resume (PDF / DOC) *</label>
                             <input type="file" id="careerResume" class="form-control" accept=".pdf,.doc,.docx" required>
                             <small class="text-muted">Maximum file size 5MB (.pdf, .doc, .docx supported)</small>
                         </div>
@@ -1055,20 +1366,21 @@
                 <div class="contact-form-card">
                     <h3>Send Inquiry Message</h3>
                     <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <input type="text" id="contactHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="form-group">
-                            <label>Full Name *</label>
+                            <label for="contactName">Full Name *</label>
                             <input type="text" id="contactName" class="form-control" required placeholder="Enter full name">
                         </div>
                         <div class="form-group">
-                            <label>Mobile Number *</label>
+                            <label for="contactMobile">Mobile Number *</label>
                             <input type="tel" id="contactMobile" class="form-control" required maxlength="10" placeholder="10 digit number">
                         </div>
                         <div class="form-group">
-                            <label>Email Address</label>
+                            <label for="contactEmail">Email Address</label>
                             <input type="email" id="contactEmail" class="form-control" placeholder="name@email.com">
                         </div>
                         <div class="form-group">
-                            <label>Loan Category / Subject</label>
+                            <label for="contactCategory">Loan Category / Subject</label>
                             <select id="contactCategory" class="form-control">
                                 <option>Personal Loan</option>
                                 <option>Business Loan</option>
@@ -1080,7 +1392,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Your Message</label>
+                            <label for="contactMessage">Your Message</label>
                             <textarea id="contactMessage" class="form-control" rows="3" placeholder="How can we help you?"></textarea>
                         </div>
                         <button type="submit" class="btn btn-gold btn-block">Submit Application <i class="fa-solid fa-paper-plane"></i></button>
@@ -1091,6 +1403,40 @@
             <!-- Map Location -->
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.124578168589!2d75.88241511540307!3d22.723594833139364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd442ad68bf7%3A0x6b4c95f6f4d0a322!2sSterling%20Arcade%2C20Square%2C%20Indore%2C%20Madhya%20Pradesh%20452001!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DATA SECURITY / PRIVACY PROMISE ==================== -->
+    <section class="security-section section-padding" id="security">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title"><i class="fa-solid fa-shield-halved"></i> Our Promise To You</span>
+                <h2>Your Data. Fully Protected.</h2>
+                <p>We treat your financial information with the same care a bank would.</p>
+            </div>
+
+            <div class="security-grid">
+                <div class="security-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <h4>Bank-Grade Encryption</h4>
+                    <p>All data transmitted through our forms is encrypted in transit.</p>
+                </div>
+                <div class="security-box">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <h4>Confidential Handling</h4>
+                    <p>Your details are shared only with the lender relevant to your enquiry.</p>
+                </div>
+                <div class="security-box">
+                    <i class="fa-solid fa-ban"></i>
+                    <h4>No Spam, Ever</h4>
+                    <p>We never sell your data or bombard you with unrelated marketing.</p>
+                </div>
+                <div class="security-box">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <h4>RBI Guideline Aligned</h4>
+                    <p>Our advisory process follows applicable RBI fair-practice norms.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1115,6 +1461,7 @@
                 <a href="#calculator">EMI Calculator</a>
                 <a href="#eligibility">Eligibility Checker</a>
                 <a href="#partner">Become a Partner</a>
+                <a href="#refer-earn">Refer & Earn</a>
                 <a href="#careers">Careers</a>
                 <a href="#contact">Contact Us</a>
             </div>
@@ -1142,6 +1489,10 @@
             <i class="fa-brands fa-whatsapp"></i>
             <span class="float-tooltip">WhatsApp: +91 9111112914</span>
         </a>
+        <button type="button" class="float-btn float-callback" aria-label="Request a Callback" onclick="openCallbackModal()">
+            <i class="fa-solid fa-headset"></i>
+            <span class="float-tooltip">Request a Callback</span>
+        </button>
     </div>
 
     <!-- Mobile Sticky Quick Action Bar -->
@@ -1151,22 +1502,23 @@
     </div>
 
     <!-- ==================== APPLY MODAL ==================== -->
-    <div class="modal-overlay" id="applyModal">
+    <div class="modal-overlay" id="applyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-box">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <button class="modal-close" onclick="closeModal()" aria-label="Close dialog">&times;</button>
             <h3 id="modalTitle">Apply For Quick Loan</h3>
             <p>Get instant offers from 35+ top Banks & NBFCs</p>
             <form onsubmit="handleModalSubmit(event)" style="margin-top:15px;">
+                    <input type="text" id="modalHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <div class="form-group">
-                    <label>Full Name</label>
+                    <label for="modalName">Full Name</label>
                     <input type="text" id="modalName" class="form-control" required placeholder="Your full name">
                 </div>
                 <div class="form-group">
-                    <label>Mobile Number</label>
+                    <label for="modalPhone">Mobile Number</label>
                     <input type="tel" id="modalPhone" class="form-control" required maxlength="10" placeholder="10 digit number">
                 </div>
                 <div class="form-group">
-                    <label>City</label>
+                    <label for="modalCity">City</label>
                     <input type="text" id="modalCity" class="form-control" value="Indore" required>
                 </div>
                 <button type="submit" class="btn btn-gold btn-block">Get Pre-Approved <i class="fa-solid fa-arrow-right"></i></button>
@@ -1174,10 +1526,40 @@
         </div>
     </div>
 
+    <!-- ==================== CALLBACK REQUEST MODAL ==================== -->
+    <div class="modal-overlay" id="callbackModal" role="dialog" aria-modal="true" aria-labelledby="callbackModalTitle">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeCallbackModal()" aria-label="Close dialog">&times;</button>
+            <h3 id="callbackModalTitle">Request a Callback</h3>
+            <p>Our loan advisor will call you back within 15 minutes.</p>
+            <form id="callbackForm" onsubmit="handleCallbackSubmit(event)" style="margin-top:15px;">
+                    <input type="text" id="callbackHP" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="form-group">
+                    <label for="callbackName">Full Name</label>
+                    <input type="text" id="callbackName" class="form-control" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label for="callbackPhone">Mobile Number</label>
+                    <input type="tel" id="callbackPhone" class="form-control" required maxlength="10" placeholder="10 digit number">
+                </div>
+                <div class="form-group">
+                    <label for="callbackTime">Preferred Time to Call</label>
+                    <select id="callbackTime" class="form-control">
+                        <option value="Anytime">Anytime</option>
+                        <option value="Morning (9AM - 12PM)">Morning (9AM - 12PM)</option>
+                        <option value="Afternoon (12PM - 4PM)">Afternoon (12PM - 4PM)</option>
+                        <option value="Evening (4PM - 8PM)">Evening (4PM - 8PM)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-gold btn-block">Request Callback <i class="fa-solid fa-phone-volume"></i></button>
+            </form>
+        </div>
+    </div>
+
     <!-- ==================== LEGAL POLICIES MODAL ==================== -->
-    <div class="modal-overlay" id="legalModal">
+    <div class="modal-overlay" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
         <div class="modal-box legal-modal-box">
-            <button class="modal-close" onclick="closeLegalModal()">&times;</button>
+            <button class="modal-close" onclick="closeLegalModal()" aria-label="Close dialog">&times;</button>
             <h3 id="legalModalTitle">Privacy Policy</h3>
             <div id="legalModalContent" class="legal-modal-body">
                 <!-- Dynamically populated via JS -->
@@ -1185,6 +1567,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

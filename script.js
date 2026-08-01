@@ -27,6 +27,272 @@ async function submitLead(formData) {
 }
 
 /* ==========================================================================
+   1b. DOUBLE-SUBMIT PREVENTION
+   Disables the submit button and shows a loading state while a form is
+   being submitted, then restores it once the request completes.
+   ========================================================================== */
+
+function setFormLoading(form, isLoading, loadingText) {
+    if (!form) return;
+    const btn = form.querySelector('button[type="submit"]');
+    if (!btn) return;
+
+    if (isLoading) {
+        if (btn.disabled) return false; // already submitting — block duplicate
+        btn.dataset.originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.classList.add("btn-loading");
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ' + (loadingText || "Submitting...");
+        return true;
+    }
+
+    btn.disabled = false;
+    btn.classList.remove("btn-loading");
+    if (btn.dataset.originalHtml) btn.innerHTML = btn.dataset.originalHtml;
+    return true;
+}
+
+/* ==========================================================================
+   1c. LEAD SOURCE TRACKING
+   Captures attribution + device/session context and appends it to every
+   lead FormData. First-touch UTM values and the true landing page are
+   captured once per browser session (sessionStorage) so multi-page
+   navigation on the site doesn't overwrite the original marketing source.
+   ========================================================================== */
+
+function generateLeadId() {
+    return "LBI-" + Date.now().toString(36).toUpperCase() + "-" + Math.floor(100 + Math.random() * 900);
+}
+
+function getUTMParams() {
+    try {
+        const stored = sessionStorage.getItem("lbi_utm");
+        if (stored) return JSON.parse(stored);
+    } catch (err) { /* sessionStorage unavailable — fall through */ }
+
+    const params = new URLSearchParams(window.location.search);
+    const utm = {
+        utmSource: params.get("utm_source") || "Direct",
+        utmMedium: params.get("utm_medium") || "None",
+        utmCampaign: params.get("utm_campaign") || "None",
+        utmTerm: params.get("utm_term") || "None",
+        utmContent: params.get("utm_content") || "None"
+    };
+
+    try { sessionStorage.setItem("lbi_utm", JSON.stringify(utm)); } catch (err) { /* ignore */ }
+    return utm;
+}
+
+function getLandingPageURL() {
+    try {
+        const stored = sessionStorage.getItem("lbi_landing_page");
+        if (stored) return stored;
+        sessionStorage.setItem("lbi_landing_page", window.location.href);
+    } catch (err) { /* ignore */ }
+    return window.location.href;
+}
+
+function detectDeviceType() {
+    const w = window.innerWidth;
+    if (w <= 767) return "Mobile";
+    if (w <= 1024) return "Tablet";
+    return "Desktop";
+}
+
+function detectBrowser() {
+    const ua = navigator.userAgent || "";
+    if (ua.includes("Edg/")) return "Edge";
+    if (ua.includes("OPR/") || ua.includes("Opera")) return "Opera";
+    if (ua.includes("Chrome/") && !ua.includes("Edg/")) return "Chrome";
+    if (ua.includes("Firefox/")) return "Firefox";
+    if (ua.includes("Safari/") && !ua.includes("Chrome/")) return "Safari";
+    return "Unknown";
+}
+
+function detectOS() {
+    const ua = navigator.userAgent || "";
+    if (ua.includes("Windows")) return "Windows";
+    if (ua.includes("Android")) return "Android";
+    if (ua.includes("iPhone") || ua.includes("iPad") || ua.includes("iOS")) return "iOS";
+    if (ua.includes("Mac OS")) return "macOS";
+    if (ua.includes("Linux")) return "Linux";
+    return "Unknown";
+}
+
+function getTrackingMetadata(formName) {
+    const utm = getUTMParams();
+    const now = new Date();
+
+    let timezone = "Unknown";
+    try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown"; } catch (err) { /* ignore */ }
+
+    return {
+        leadId: generateLeadId(),
+        leadSource: utm.utmSource !== "Direct" ? "Campaign" : (document.referrer ? "Referral" : "Direct"),
+        pageName: document.title || "Loan Buddy India",
+        formName: formName,
+        submissionDate: now.toLocaleDateString("en-IN"),
+        submissionTime: now.toLocaleTimeString("en-IN"),
+        utmSource: utm.utmSource,
+        utmMedium: utm.utmMedium,
+        utmCampaign: utm.utmCampaign,
+        utmTerm: utm.utmTerm,
+        utmContent: utm.utmContent,
+        referrerURL: document.referrer || "Direct",
+        landingPageURL: getLandingPageURL(),
+        deviceType: detectDeviceType(),
+        browser: detectBrowser(),
+        screenResolution: window.screen.width + "x" + window.screen.height,
+        operatingSystem: detectOS(),
+        language: navigator.language || "Unknown",
+        timezone: timezone
+    };
+}
+
+function appendTrackingToFormData(formData, formName) {
+    const meta = getTrackingMetadata(formName);
+    Object.keys(meta).forEach((key) => formData.append(key, meta[key]));
+}
+
+/* ==========================================================================
+   1d. INPUT SANITIZATION
+   ========================================================================== */
+
+function sanitizeText(value) {
+    return (value || "").toString().trim().replace(/[<>]/g, "");
+}
+
+function val(id) {
+    const el = document.getElementById(id);
+    return el ? sanitizeText(el.value) : "";
+}
+
+/* ==========================================================================
+   1e. FIELD VALIDATION (phone / email / required) + AUTO-FOCUS FIRST ERROR
+   ========================================================================== */
+
+function isValidIndianPhone(phone) {
+    return /^[6-9]\d{9}$/.test((phone || "").toString().trim());
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email || "").toString().trim());
+}
+
+function markFieldInvalid(input, message) {
+    if (!input) return;
+    input.classList.add("field-invalid");
+    input.setAttribute("aria-invalid", "true");
+
+    let msgEl = input.parentElement ? input.parentElement.querySelector(".field-error-text") : null;
+    if (!msgEl) {
+        msgEl = document.createElement("span");
+        msgEl.className = "field-error-text";
+        msgEl.setAttribute("role", "alert");
+        input.insertAdjacentElement("afterend", msgEl);
+    }
+    msgEl.textContent = message;
+}
+
+function clearFieldInvalid(input) {
+    if (!input) return;
+    input.classList.remove("field-invalid");
+    input.removeAttribute("aria-invalid");
+    const msgEl = input.parentElement ? input.parentElement.querySelector(".field-error-text") : null;
+    if (msgEl) msgEl.remove();
+}
+
+function clearFormErrors(form) {
+    if (!form) return;
+    form.querySelectorAll(".field-invalid").forEach((el) => clearFieldInvalid(el));
+}
+
+/**
+ * Validates a lead form's required / phone / email fields, marks invalid
+ * fields with an inline message, and auto-focuses the first invalid field.
+ * Returns true if the form is valid, false otherwise.
+ */
+function validateLeadForm(form, config) {
+    if (!form) return true;
+    clearFormErrors(form);
+
+    const requiredIds = (config && config.requiredIds) || [];
+    const phoneIds = (config && config.phoneIds) || [];
+    const emailIds = (config && config.emailIds) || [];
+    let firstInvalid = null;
+
+    requiredIds.forEach((id) => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        if (!input.value || !input.value.toString().trim()) {
+            markFieldInvalid(input, "This field is required.");
+            if (!firstInvalid) firstInvalid = input;
+        }
+    });
+
+    phoneIds.forEach((id) => {
+        const input = document.getElementById(id);
+        if (!input || !input.value.trim()) return;
+        if (!isValidIndianPhone(input.value)) {
+            markFieldInvalid(input, "Enter a valid 10-digit mobile number.");
+            if (!firstInvalid) firstInvalid = input;
+        }
+    });
+
+    emailIds.forEach((id) => {
+        const input = document.getElementById(id);
+        if (!input || !input.value.trim()) return;
+        if (!isValidEmail(input.value)) {
+            markFieldInvalid(input, "Enter a valid email address (e.g. name@example.com).");
+            if (!firstInvalid) firstInvalid = input;
+        }
+    });
+
+    if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+        return false;
+    }
+    return true;
+}
+
+/* ==========================================================================
+   1f. ANTI-SPAM: HONEYPOT + SUBMISSION COOLDOWN
+   ========================================================================== */
+
+function isHoneypotFilled(honeypotId) {
+    const hp = document.getElementById(honeypotId);
+    return !!(hp && hp.value && hp.value.trim() !== "");
+}
+
+function canSubmitForm(formKey, cooldownMs) {
+    const key = "lbi_last_submit_" + formKey;
+    try {
+        const last = sessionStorage.getItem(key);
+        const now = Date.now();
+        if (last && now - parseInt(last, 10) < (cooldownMs || 4000)) {
+            return false;
+        }
+        sessionStorage.setItem(key, now.toString());
+    } catch (err) { /* sessionStorage unavailable — allow submission */ }
+    return true;
+}
+
+/* Clears a field's invalid state as soon as the user starts correcting it */
+function initInlineErrorClearing() {
+    document.addEventListener("input", (e) => {
+        if (e.target && e.target.classList && e.target.classList.contains("field-invalid")) {
+            clearFieldInvalid(e.target);
+        }
+    });
+    document.addEventListener("change", (e) => {
+        if (e.target && e.target.classList && e.target.classList.contains("field-invalid")) {
+            clearFieldInvalid(e.target);
+        }
+    });
+}
+
+/* ==========================================================================
    2. FORM HANDLERS
    ========================================================================== */
 
@@ -34,22 +300,30 @@ async function submitLead(formData) {
 async function handleHeroSubmit(e) {
     e.preventDefault();
 
+    if (isHoneypotFilled("heroHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, { requiredIds: ["heroLoanType", "heroPhone"], phoneIds: ["heroPhone"] })) return;
+    if (!canSubmitForm("hero")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
     const formData = new FormData();
     formData.append("fullName", "Website Lead");
-    formData.append("mobile", document.getElementById("heroPhone").value);
+    formData.append("mobile", val("heroPhone"));
     formData.append("email", "");
-    formData.append("loanType", document.getElementById("heroLoanType").value);
+    formData.append("loanType", val("heroLoanType"));
     formData.append("amount", document.getElementById("heroAmountRange").value);
     formData.append("message", "Hero Form");
+    appendTrackingToFormData(formData, "Hero Quick Quote");
 
     const success = await submitLead(formData);
+    setFormLoading(e.target, false);
 
     if (success) {
-        alert("Lead Submitted Successfully!");
+        alert("Thank you! Your details have been submitted. Our loan advisor will call you shortly.");
         e.target.reset();
+        clearFormErrors(e.target);
         updateHeroSlider(document.getElementById("heroAmountRange").value);
     } else {
-        alert("Submission Failed. Please try again.");
+        alert("We couldn't submit your request due to a network issue. Please check your connection and try again.");
     }
 }
 
@@ -57,22 +331,30 @@ async function handleHeroSubmit(e) {
 async function handleModalSubmit(e) {
     e.preventDefault();
 
+    if (isHoneypotFilled("modalHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, { requiredIds: ["modalName", "modalPhone", "modalCity"], phoneIds: ["modalPhone"] })) return;
+    if (!canSubmitForm("modal")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
     const formData = new FormData();
-    formData.append("fullName", document.getElementById("modalName").value);
-    formData.append("mobile", document.getElementById("modalPhone").value);
+    formData.append("fullName", val("modalName"));
+    formData.append("mobile", val("modalPhone"));
     formData.append("email", "");
     formData.append("loanType", document.getElementById("modalTitle").textContent || "Quick Loan");
     formData.append("amount", "");
-    formData.append("message", "City: " + document.getElementById("modalCity").value);
+    formData.append("message", "City: " + val("modalCity"));
+    appendTrackingToFormData(formData, "Apply Now Modal");
 
     const success = await submitLead(formData);
+    setFormLoading(e.target, false);
 
     if (success) {
-        alert("Application Submitted Successfully!");
+        alert("Application submitted successfully! Our team will get back to you with pre-approved offers shortly.");
         e.target.reset();
+        clearFormErrors(e.target);
         closeModal();
     } else {
-        alert("Submission Failed. Please try again.");
+        alert("We couldn't submit your application due to a network issue. Please check your connection and try again.");
     }
 }
 
@@ -80,25 +362,36 @@ async function handleModalSubmit(e) {
 async function handleEnquirySubmit(e) {
     e.preventDefault();
 
+    if (isHoneypotFilled("enquiryHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, {
+        requiredIds: ["enquiryName", "enquiryMobile", "enquiryType", "enquiryAmount", "enquiryIncome", "enquiryCity"],
+        phoneIds: ["enquiryMobile"]
+    })) return;
+    if (!canSubmitForm("enquiry")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
     const formData = new FormData();
-    formData.append("fullName", document.getElementById("enquiryName").value);
-    formData.append("mobile", document.getElementById("enquiryMobile").value);
+    formData.append("fullName", val("enquiryName"));
+    formData.append("mobile", val("enquiryMobile"));
     formData.append("email", "");
-    formData.append("loanType", document.getElementById("enquiryType").value);
+    formData.append("loanType", val("enquiryType"));
     formData.append("amount", document.getElementById("enquiryAmount").value);
     formData.append(
         "message",
-        "Instant Loan Enquiry | Monthly Income: " + document.getElementById("enquiryIncome").value +
-        " | City: " + document.getElementById("enquiryCity").value
+        "Instant Loan Enquiry | Monthly Income: " + val("enquiryIncome") +
+        " | City: " + val("enquiryCity")
     );
+    appendTrackingToFormData(formData, "Instant Loan Enquiry");
 
     const success = await submitLead(formData);
+    setFormLoading(e.target, false);
 
     if (success) {
-        alert("Enquiry Submitted Successfully!");
+        alert("Enquiry submitted successfully! We'll match you with the best rate within 24 hours.");
         e.target.reset();
+        clearFormErrors(e.target);
     } else {
-        alert("Submission Failed. Please try again.");
+        alert("We couldn't submit your enquiry due to a network issue. Please check your connection and try again.");
     }
 }
 
@@ -106,27 +399,39 @@ async function handleEnquirySubmit(e) {
 async function handlePartnerSubmit(e) {
     e.preventDefault();
 
+    if (isHoneypotFilled("partnerHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, {
+        requiredIds: ["partnerName", "partnerMobile", "partnerEmail", "partnerProfession", "partnerExperience", "partnerCity"],
+        phoneIds: ["partnerMobile"],
+        emailIds: ["partnerEmail"]
+    })) return;
+    if (!canSubmitForm("partner")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
     const formData = new FormData();
-    formData.append("fullName", document.getElementById("partnerName").value);
-    formData.append("mobile", document.getElementById("partnerMobile").value);
-    formData.append("email", document.getElementById("partnerEmail").value);
+    formData.append("fullName", val("partnerName"));
+    formData.append("mobile", val("partnerMobile"));
+    formData.append("email", val("partnerEmail"));
     formData.append("loanType", "Partner Registration");
     formData.append("amount", "");
     formData.append(
         "message",
-        "Profession: " + document.getElementById("partnerProfession").value +
-        " | Experience: " + document.getElementById("partnerExperience").value +
-        " | City: " + document.getElementById("partnerCity").value +
-        " | Notes: " + document.getElementById("partnerMessage").value
+        "Profession: " + val("partnerProfession") +
+        " | Experience: " + val("partnerExperience") +
+        " | City: " + val("partnerCity") +
+        " | Notes: " + val("partnerMessage")
     );
+    appendTrackingToFormData(formData, "Become a Partner");
 
     const success = await submitLead(formData);
+    setFormLoading(e.target, false);
 
     if (success) {
-        alert("Partner Registration Successful!");
+        alert("Registration successful! Our partner onboarding manager will contact you shortly.");
         e.target.reset();
+        clearFormErrors(e.target);
     } else {
-        alert("Submission Failed. Please try again.");
+        alert("We couldn't submit your registration due to a network issue. Please check your connection and try again.");
     }
 }
 
@@ -134,10 +439,19 @@ async function handlePartnerSubmit(e) {
 async function handleCareerSubmit(e) {
     e.preventDefault();
 
+    if (isHoneypotFilled("careerHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, {
+        requiredIds: ["careerName", "careerMobile", "careerEmail", "careerPosition", "careerExperience", "careerCity"],
+        phoneIds: ["careerMobile"],
+        emailIds: ["careerEmail"]
+    })) return;
+    if (!canSubmitForm("career")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
     const formData = new FormData();
-    formData.append("fullName", document.getElementById("careerName").value);
-    formData.append("mobile", document.getElementById("careerMobile").value);
-    formData.append("email", document.getElementById("careerEmail").value);
+    formData.append("fullName", val("careerName"));
+    formData.append("mobile", val("careerMobile"));
+    formData.append("email", val("careerEmail"));
     formData.append("loanType", "Career Application");
     formData.append("amount", "");
 
@@ -146,19 +460,22 @@ async function handleCareerSubmit(e) {
 
     formData.append(
         "message",
-        "Position: " + document.getElementById("careerPosition").value +
-        " | Experience: " + document.getElementById("careerExperience").value +
-        " | City: " + document.getElementById("careerCity").value +
+        "Position: " + val("careerPosition") +
+        " | Experience: " + val("careerExperience") +
+        " | City: " + val("careerCity") +
         " | Resume: " + resumeName
     );
+    appendTrackingToFormData(formData, "Career Application");
 
     const success = await submitLead(formData);
+    setFormLoading(e.target, false);
 
     if (success) {
-        alert("Application Submitted Successfully!");
+        alert("Application submitted successfully! Our HR team will review your profile and reach out.");
         e.target.reset();
+        clearFormErrors(e.target);
     } else {
-        alert("Submission Failed. Please try again.");
+        alert("We couldn't submit your application due to a network issue. Please check your connection and try again.");
     }
 }
 
@@ -166,21 +483,116 @@ async function handleCareerSubmit(e) {
 async function handleContactSubmit(e) {
     e.preventDefault();
 
+    if (isHoneypotFilled("contactHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, {
+        requiredIds: ["contactName", "contactMobile", "contactEmail", "contactCategory", "contactMessage"],
+        phoneIds: ["contactMobile"],
+        emailIds: ["contactEmail"]
+    })) return;
+    if (!canSubmitForm("contact")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
     const formData = new FormData();
-    formData.append("fullName", document.getElementById("contactName").value);
-    formData.append("mobile", document.getElementById("contactMobile").value);
-    formData.append("email", document.getElementById("contactEmail").value);
-    formData.append("loanType", document.getElementById("contactCategory").value);
+    formData.append("fullName", val("contactName"));
+    formData.append("mobile", val("contactMobile"));
+    formData.append("email", val("contactEmail"));
+    formData.append("loanType", val("contactCategory"));
     formData.append("amount", "");
-    formData.append("message", document.getElementById("contactMessage").value);
+    formData.append("message", val("contactMessage"));
+    appendTrackingToFormData(formData, "Contact Us");
 
     const success = await submitLead(formData);
+    setFormLoading(e.target, false);
 
     if (success) {
-        alert("Message Sent Successfully!");
+        alert("Message sent successfully! Our team will respond to you shortly.");
         e.target.reset();
+        clearFormErrors(e.target);
     } else {
-        alert("Submission Failed. Please try again.");
+        alert("We couldn't send your message due to a network issue. Please check your connection and try again.");
+    }
+}
+
+/* ---- Refer & Earn Form ---- */
+function generateReferralCode() {
+    const randomDigits = Math.floor(100000 + Math.random() * 900000);
+    return "LBI-" + randomDigits;
+}
+
+async function handleReferSubmit(e) {
+    e.preventDefault();
+
+    if (isHoneypotFilled("referHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, {
+        requiredIds: ["referCustomerName", "referCustomerMobile", "referLoanCategory", "referLoanAmount", "referCity", "referrerName", "referrerMobile"],
+        phoneIds: ["referCustomerMobile", "referrerMobile"]
+    })) return;
+    if (!canSubmitForm("refer")) { alert("You already submitted this form. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true, "Generating...") === false) return;
+
+    const referralCode = generateReferralCode();
+
+    const formData = new FormData();
+    formData.append("fullName", val("referCustomerName"));
+    formData.append("mobile", val("referCustomerMobile"));
+    formData.append("email", "");
+    formData.append("loanType", val("referLoanCategory"));
+    formData.append("amount", document.getElementById("referLoanAmount").value);
+    formData.append(
+        "message",
+        "Refer & Earn | Referral ID: " + referralCode +
+        " | City: " + val("referCity") +
+        " | Referrer: " + val("referrerName") +
+        " | Referrer Mobile: " + val("referrerMobile") +
+        " | Relationship: " + val("referrerRelation") +
+        " | Remarks: " + val("referRemarks")
+    );
+    appendTrackingToFormData(formData, "Refer & Earn");
+
+    const success = await submitLead(formData);
+    setFormLoading(e.target, false);
+
+    if (success) {
+        const codeBox = document.getElementById("referCodeBox");
+        const codeValue = document.getElementById("referCodeValue");
+        if (codeValue) codeValue.textContent = referralCode;
+        if (codeBox) codeBox.style.display = "block";
+        alert("Referral submitted successfully! Your Reference ID is " + referralCode);
+        e.target.reset();
+        clearFormErrors(e.target);
+    } else {
+        alert("We couldn't submit your referral due to a network issue. Please check your connection and try again.");
+    }
+}
+
+/* ---- Callback Request Form ---- */
+async function handleCallbackSubmit(e) {
+    e.preventDefault();
+
+    if (isHoneypotFilled("callbackHP")) return; // silently drop spam
+    if (!validateLeadForm(e.target, { requiredIds: ["callbackName", "callbackPhone"], phoneIds: ["callbackPhone"] })) return;
+    if (!canSubmitForm("callback")) { alert("You already requested a callback. Please wait a few seconds and try again."); return; }
+    if (setFormLoading(e.target, true) === false) return;
+
+    const formData = new FormData();
+    formData.append("fullName", val("callbackName"));
+    formData.append("mobile", val("callbackPhone"));
+    formData.append("email", "");
+    formData.append("loanType", "Callback Request");
+    formData.append("amount", "");
+    formData.append("message", "Preferred Time: " + val("callbackTime"));
+    appendTrackingToFormData(formData, "Callback Request");
+
+    const success = await submitLead(formData);
+    setFormLoading(e.target, false);
+
+    if (success) {
+        alert("Callback requested! Our advisor will call you within 15 minutes during business hours.");
+        e.target.reset();
+        clearFormErrors(e.target);
+        closeCallbackModal();
+    } else {
+        alert("We couldn't submit your request due to a network issue. Please check your connection and try again.");
     }
 }
 
@@ -198,6 +610,19 @@ function openModal(title) {
 
 function closeModal() {
     const modal = document.getElementById("applyModal");
+    if (modal) modal.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+/* ---- Callback Request Modal ---- */
+function openCallbackModal() {
+    const modal = document.getElementById("callbackModal");
+    if (modal) modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCallbackModal() {
+    const modal = document.getElementById("callbackModal");
     if (modal) modal.classList.remove("active");
     document.body.style.overflow = "";
 }
@@ -289,6 +714,20 @@ function toggleFaq(headerEl) {
     if (!wasActive) {
         item.classList.add("active");
     }
+}
+
+/* ==========================================================================
+   6b. DOCUMENT CHECKLIST TABS
+   ========================================================================== */
+
+function switchDocumentTab(type, btnEl) {
+    document.querySelectorAll(".doc-tab").forEach((tab) => tab.classList.remove("active"));
+    document.querySelectorAll(".document-panel").forEach((panel) => panel.classList.remove("active"));
+
+    if (btnEl) btnEl.classList.add("active");
+
+    const panel = document.getElementById("doc-" + type);
+    if (panel) panel.classList.add("active");
 }
 
 /* ==========================================================================
@@ -516,41 +955,41 @@ function calculateEligibility(e) {
 const loanProductData = {
     personal: {
         name: "Personal Loan",
-        rate: "10.5% - 18% p.a.",
+        rate: "9.99% p.a. onwards",
         maxAmount: "Up to ₹50 Lakhs",
-        tenure: "1 - 5 Years",
+        tenure: "1 - 8 Years",
         collateral: "Not Required",
-        processingFee: "1% - 2.5%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "24 - 48 Hours",
         idealFor: "Weddings, Travel, Medical, Debt Consolidation"
     },
     business: {
         name: "Business Loan",
-        rate: "12% - 20% p.a.",
+        rate: "9.99% p.a. onwards",
         maxAmount: "Up to ₹1 Crore",
         tenure: "1 - 5 Years",
         collateral: "Not Required (Unsecured)",
-        processingFee: "1% - 3%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "48 - 72 Hours",
         idealFor: "MSMEs, Retailers, Traders, Manufacturers"
     },
     home: {
         name: "Home Loan",
-        rate: "8.0% - 10.5% p.a.",
+        rate: "Starting from 7.10% p.a.",
         maxAmount: "Up to ₹5 Crores",
         tenure: "5 - 30 Years",
         collateral: "Property Mortgage",
-        processingFee: "0.5% - 1%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "5 - 10 Working Days",
         idealFor: "Home Purchase, Construction, Renovation"
     },
     lap: {
         name: "Loan Against Property",
-        rate: "9% - 13% p.a.",
+        rate: "Starting from 9.00% p.a.",
         maxAmount: "Up to ₹10 Crores",
         tenure: "5 - 20 Years",
         collateral: "Residential / Commercial Property",
-        processingFee: "0.5% - 1.5%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "5 - 7 Working Days",
         idealFor: "Business Expansion, Higher Education, Large Expenses"
     },
@@ -560,27 +999,27 @@ const loanProductData = {
         maxAmount: "Existing Outstanding + Top-Up",
         tenure: "Remaining / Extended Tenure",
         collateral: "Same as Original Loan",
-        processingFee: "0.5% - 1%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "3 - 7 Working Days",
         idealFor: "Reducing EMI, Cash Top-Up on Existing Loans"
     },
     working_capital: {
         name: "Working Capital & CC/OD",
-        rate: "11% - 16% p.a.",
+        rate: "Starting from 10.50% p.a.",
         maxAmount: "Up to ₹25 Crores",
         tenure: "Annual Renewal",
         collateral: "May Vary (Secured / Unsecured)",
-        processingFee: "1% - 2%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "5 - 10 Working Days",
         idealFor: "Business Cash Flow, Inventory, Operations"
     },
     used_car: {
         name: "Used Car Loan",
-        rate: "11% - 16% p.a.",
+        rate: "Starting from 7.15% p.a.",
         maxAmount: "Up to ₹25 Lakhs",
         tenure: "1 - 5 Years",
         collateral: "Vehicle Hypothecation",
-        processingFee: "1% - 2%",
+        processingFee: "0.10% - 3.00%",
         disbursal: "24 - 48 Hours",
         idealFor: "Pre-Owned / Used Vehicle Purchase"
     }
@@ -704,6 +1143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavbarScroll();
     initActiveNavLink();
     animateCounters();
+    initInlineErrorClearing();
 
     // Set initial hero slider value display
     const heroAmountRange = document.getElementById("heroAmountRange");
@@ -723,9 +1163,11 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("click", (e) => {
     const applyModal = document.getElementById("applyModal");
     const legalModal = document.getElementById("legalModal");
+    const callbackModal = document.getElementById("callbackModal");
 
     if (e.target === applyModal) closeModal();
     if (e.target === legalModal) closeLegalModal();
+    if (e.target === callbackModal) closeCallbackModal();
 });
 
 // Close modals with Escape key
@@ -733,5 +1175,6 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         closeModal();
         closeLegalModal();
+        closeCallbackModal();
     }
 });

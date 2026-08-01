@@ -164,6 +164,13 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
+.btn-loading,
+.btn:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .btn-lg {
     padding: 15px 30px;
     font-size: 16px;
@@ -422,6 +429,45 @@ h1, h2, h3, h4 {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+/* Form Validation States */
+.form-control.field-invalid {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+.field-error-text {
+    display: block;
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Honeypot Field (Anti-Spam) — visually hidden, accessible to bots only */
+.hp-field {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+}
+
+/* Accessible Keyboard Focus States (does not alter mouse/touch appearance) */
+a:focus-visible,
+button:focus-visible,
+.form-control:focus-visible,
+.btn:focus-visible,
+.doc-tab:focus-visible,
+.preset-btn:focus-visible {
+    outline: 3px solid var(--blue-accent);
+    outline-offset: 2px;
+}
+
 .slider-label {
     display: flex;
     justify-content: space-between;
@@ -472,6 +518,36 @@ input[type="range"] {
     color: #cbd5e1;
     font-size: 13px;
     font-weight: 600;
+}
+
+/* Trust Badges Strip */
+.trust-strip {
+    background: var(--slate-100);
+    border-bottom: 1px solid var(--slate-200);
+    padding: 16px 0;
+}
+
+.trust-strip-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px 32px;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--slate-600);
+    white-space: nowrap;
+}
+
+.trust-badge i {
+    color: var(--gold-primary);
+    font-size: 14px;
 }
 
 /* Instant Loan Enquiry Section */
@@ -788,7 +864,6 @@ input[type="range"] {
     font-size: 18px;
 }
 
-.text-navy { color: #38bdf8; }
 .text-gold-dot { color: var(--gold-accent); }
 
 .calc-progress-wrapper {
@@ -914,6 +989,86 @@ input[type="range"] {
     margin-bottom: 15px;
 }
 
+/* Document Checklist Section */
+.documents-section {
+    background-color: var(--white);
+}
+
+.document-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.doc-tab {
+    background: var(--slate-100);
+    border: 1px solid var(--slate-200);
+    color: var(--slate-600);
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.doc-tab:hover {
+    background: var(--slate-200);
+}
+
+.doc-tab.active {
+    background: var(--royal-blue);
+    border-color: var(--royal-blue);
+    color: var(--white);
+}
+
+.document-panel-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.document-panel {
+    display: none;
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.document-panel.active {
+    display: block;
+    animation: fadeInUp 0.3s ease;
+}
+
+.document-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 20px;
+}
+
+.document-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate-800);
+}
+
+.document-list li i {
+    color: var(--gold-primary);
+    font-size: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Become a Partner Section */
 .partner-section {
     background-color: var(--slate-50);
@@ -984,6 +1139,130 @@ input[type="range"] {
 .partner-form-col h3 {
     font-size: 22px;
     margin-bottom: 4px;
+}
+
+/* Refer & Earn Section */
+.refer-section {
+    background: linear-gradient(135deg, var(--navy-dark), var(--royal-blue));
+    position: relative;
+    overflow: hidden;
+}
+
+.refer-section .light-title h2 {
+    color: var(--white);
+}
+
+.refer-section .light-title p {
+    color: #cbd5e1;
+}
+
+.refer-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.refer-glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.refer-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.refer-step:last-child {
+    border-bottom: none;
+}
+
+.refer-step i {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--gold-vibrant), var(--gold-primary));
+    color: var(--navy-dark);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.refer-step h4 {
+    color: var(--white);
+    font-size: 15.5px;
+    margin-bottom: 4px;
+}
+
+.refer-step p {
+    color: #cbd5e1;
+    font-size: 13.5px;
+}
+
+.refer-form h3 {
+    color: var(--white);
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.refer-form .form-subtext {
+    color: #cbd5e1;
+    margin-bottom: 18px;
+    font-size: 13.5px;
+}
+
+.refer-form .form-group label {
+    color: #e2e8f0;
+}
+
+.refer-form .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--white);
+}
+
+.refer-form .form-control::placeholder {
+    color: #94a3b8;
+}
+
+.refer-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--gold-accent);
+}
+
+.refer-form .secure-note {
+    color: #cbd5e1;
+}
+
+.refer-code-box {
+    margin-top: 16px;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px dashed var(--gold-accent);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+}
+
+.refer-code-box span {
+    display: block;
+    color: #cbd5e1;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.refer-code-box strong {
+    color: var(--gold-accent);
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
 /* Careers Section */
@@ -1256,6 +1535,47 @@ input[type="range"] {
     border: 1px solid #e2e8f0;
 }
 
+/* Data Security / Privacy Promise Section */
+.security-section {
+    background-color: var(--slate-100);
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.security-box {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.security-box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.security-box i {
+    font-size: 26px;
+    color: var(--gold-primary);
+    margin-bottom: 12px;
+}
+
+.security-box h4 {
+    font-size: 15.5px;
+    margin-bottom: 8px;
+}
+
+.security-box p {
+    font-size: 13px;
+    color: var(--slate-600);
+}
+
 /* Footer */
 .footer {
     background: var(--navy-dark);
@@ -1319,6 +1639,9 @@ input[type="range"] {
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .float-btn:hover {
@@ -1331,6 +1654,10 @@ input[type="range"] {
 
 .float-wa {
     background-color: #25d366;
+}
+
+.float-callback {
+    background: linear-gradient(135deg, var(--gold-vibrant), var(--gold-primary));
 }
 
 .float-tooltip {
@@ -1446,6 +1773,74 @@ input[type="range"] {
 
 .modal-close:hover {
     color: var(--navy-dark);
+}
+
+/* ==================== LOAN PROCESS TIMELINE STYLES ==================== */
+.process-section {
+    background-color: var(--white);
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+}
+
+.timeline-step {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 30px 22px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.timeline-step:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.timeline-number {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-vibrant), var(--gold-primary));
+    color: var(--white);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-icon {
+    width: 56px;
+    height: 56px;
+    margin: 12px auto 16px;
+    border-radius: 14px;
+    background: rgba(15, 43, 91, 0.08);
+    color: var(--royal-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.timeline-step h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.timeline-step p {
+    font-size: 13.5px;
+    color: var(--slate-600);
 }
 
 /* ==================== LOAN COMPARISON SECTION STYLES ==================== */
@@ -1705,6 +2100,10 @@ input[type="range"] {
     .partner-benefits, .jobs-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
     .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 34px 24px; }
+    .document-tabs { flex-wrap: wrap; }
+    .refer-grid { grid-template-columns: 1fr; }
+    .security-grid { grid-template-columns: repeat(2, 1fr); }
     .nav-links { display: none; }
     .nav-links.active {
         display: flex;
@@ -1724,6 +2123,11 @@ input[type="range"] {
 
 @media (max-width: 600px) {
     .services-grid, .why-grid, .partner-benefits, .jobs-grid, .testimonials-grid, .form-grid-2 { grid-template-columns: 1fr; }
+    .timeline-grid { grid-template-columns: 1fr; }
+    .security-grid { grid-template-columns: 1fr; }
+    .document-tabs { justify-content: flex-start; }
+    .document-list { grid-template-columns: 1fr; }
+    .document-panel { padding: 22px 18px; }
     .hero-content h1 { font-size: 32px; }
     .hero-features { grid-template-columns: 1fr; }
     .top-bar-content { justify-content: center; text-align: center; flex-direction: column; gap: 6px; }
