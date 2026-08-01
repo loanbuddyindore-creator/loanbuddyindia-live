@@ -3758,3 +3758,7 @@ input[type="range"] {
 .refer-form select.form-control:focus {
     color: #ffffff !important;
 }
+.refer-form select {
+    -webkit-appearance: none;
+    appearance: none;
+}
