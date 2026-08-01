@@ -960,7 +960,7 @@ const loanProductData = {
         tenure: "1 - 8 Years",
         collateral: "Not Required",
         processingFee: "0.10% - 3.00%",
-        disbursal: "24 - 48 Hours",
+        disbursal: "12 - 48 Hours",
         idealFor: "Weddings, Travel, Medical, Debt Consolidation"
     },
     business: {
@@ -979,17 +979,17 @@ const loanProductData = {
         maxAmount: "Up to ₹5 Crores",
         tenure: "5 - 30 Years",
         collateral: "Property Mortgage",
-        processingFee: "0.10% - 3.00%",
-        disbursal: "5 - 10 Working Days",
+        processingFee: "0.10% - 1.00%",
+        disbursal: "5 - 7 Working Days",
         idealFor: "Home Purchase, Construction, Renovation"
     },
     lap: {
         name: "Loan Against Property",
-        rate: "Starting from 9.00% p.a.",
+        rate: "Starting from 8.00% p.a.",
         maxAmount: "Up to ₹10 Crores",
         tenure: "5 - 20 Years",
         collateral: "Residential / Commercial Property",
-        processingFee: "0.10% - 3.00%",
+        processingFee: "0.10% - 1.50%",
         disbursal: "5 - 7 Working Days",
         idealFor: "Business Expansion, Higher Education, Large Expenses"
     },
@@ -999,27 +999,37 @@ const loanProductData = {
         maxAmount: "Existing Outstanding + Top-Up",
         tenure: "Remaining / Extended Tenure",
         collateral: "Same as Original Loan",
-        processingFee: "0.10% - 3.00%",
+        processingFee: "0.10% - 1.50%",
         disbursal: "3 - 7 Working Days",
         idealFor: "Reducing EMI, Cash Top-Up on Existing Loans"
     },
     working_capital: {
         name: "Working Capital & CC/OD",
-        rate: "Starting from 10.50% p.a.",
+        rate: "Starting from 8.00% p.a.",
         maxAmount: "Up to ₹25 Crores",
         tenure: "Annual Renewal",
         collateral: "May Vary (Secured / Unsecured)",
-        processingFee: "0.10% - 3.00%",
+        processingFee: "0.10% - 1.50%",
         disbursal: "5 - 10 Working Days",
         idealFor: "Business Cash Flow, Inventory, Operations"
     },
+   new_car: {
+        name: "New Car Loan",
+        rate: "Starting from 9.99% p.a.",
+        maxAmount: "Up to ₹50 Lakhs",
+        tenure: "1 - 7 Years",
+        collateral: "Vehicle Hypothecation",
+        processingFee: "Upto 1.00%",
+        disbursal: "12 - 48 Hours",
+        idealFor: "Pre-Owned / New Vehicle Purchase"
+    }
     used_car: {
         name: "Used Car Loan",
-        rate: "Starting from 7.15% p.a.",
+        rate: "Starting from 9.99% p.a.",
         maxAmount: "Up to ₹25 Lakhs",
         tenure: "1 - 5 Years",
         collateral: "Vehicle Hypothecation",
-        processingFee: "0.10% - 3.00%",
+        processingFee: "Upto 1.00%",
         disbursal: "24 - 48 Hours",
         idealFor: "Pre-Owned / Used Vehicle Purchase"
     }
