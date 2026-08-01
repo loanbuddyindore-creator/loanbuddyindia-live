@@ -2137,21 +2137,3 @@ input[type="range"] {
     .floating-buttons { bottom: 80px; right: 20px; }
     .sticky-call-header { display: none; }
 }
-/* ===== Dropdown Option Fix ===== */
-
-select,
-.form-control select {
-    color: #1a1a1a;
-}
-
-select option {
-    background: #ffffff;
-    color: #1a1a1a;
-    padding: 10px;
-}
-
-select:focus {
-    border: 2px solid #f59e0b;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(245,158,11,.25);
-}
