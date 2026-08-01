@@ -3745,4 +3745,13 @@ input[type="range"] {
     <script src="script.js" defer></script>
 </body>
 </html>
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    color: #fff !important;
+}
 
+option {
+    color: #000 !important;
+    background: #fff !important;
+}
