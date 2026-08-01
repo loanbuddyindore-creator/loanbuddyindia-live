@@ -1013,17 +1013,7 @@ const loanProductData = {
         disbursal: "5 - 10 Working Days",
         idealFor: "Business Cash Flow, Inventory, Operations"
     },
-   new_car: {
-        name: "New Car Loan",
-        rate: "Starting from 9.99% p.a.",
-        maxAmount: "Up to ₹50 Lakhs",
-        tenure: "1 - 7 Years",
-        collateral: "Vehicle Hypothecation",
-        processingFee: "Upto 1.00%",
-        disbursal: "12 - 48 Hours",
-        idealFor: "Pre-Owned / New Vehicle Purchase"
-    }
-    used_car: {
+       used_car: {
         name: "Used Car Loan",
         rate: "Starting from 9.99% p.a.",
         maxAmount: "Up to ₹25 Lakhs",
