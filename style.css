@@ -3762,3 +3762,14 @@ input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
 }
+#referLoanCategory,
+#referrerRelation{
+    color:#000 !important;
+    background:#fff !important;
+}
+
+#referLoanCategory option,
+#referrerRelation option{
+    color:#000 !important;
+    background:#fff !important;
+}
