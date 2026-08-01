@@ -2137,3 +2137,39 @@ input[type="range"] {
     .floating-buttons { bottom: 80px; right: 20px; }
     .sticky-call-header { display: none; }
 }
+.refer-form .secure-note {
+    color: #cbd5e1;
+}
+/* ===========================
+   REFER & EARN FORM FIX
+=========================== */
+
+.refer-form select,
+.refer-form input,
+.refer-form textarea {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 2px solid rgba(255,255,255,.25) !important;
+}
+
+.refer-form select option {
+    background: #ffffff !important;
+    color: #111827 !important;
+}
+
+.refer-form label {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.refer-form input::placeholder,
+.refer-form textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+.refer-form .form-control:focus {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 0 3px rgba(245,158,11,.25);
+}
