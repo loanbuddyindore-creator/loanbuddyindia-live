@@ -32,7 +32,7 @@
     <!-- Google Fonts & FontAwesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Organization Schema (JSON-LD) -->
@@ -52,7 +52,7 @@
             "addressCountry": "IN"
         },
         "telephone": "+91-9907704049",
-        "email": "sales@loanbuddyindia.com",
+        "email": "loanbuddy.indore@gmail.com",
         "priceRange": "Free Advisory Service"
     }
     </script>
@@ -115,7 +115,7 @@
             <div class="top-info">
                 <a href="tel:+919907704049"><i class="fa-solid fa-phone"></i> +91 9907704049</a>
                 <a href="https://wa.me/919111112914?text=Hi%20Loan%20Buddy%20India,%20I%20want%20to%20enquire%20about%20a%20loan." target="_blank"><i class="fa-brands fa-whatsapp"></i> +91 9111112914</a>
-                <a href="mailto:sales@loanbuddyindia.com"><i class="fa-solid fa-envelope"></i> sales@loanbuddyindia.com</a>
+                <a href="mailto:loanbuddy.indore@gmail.com"><i class="fa-solid fa-envelope"></i> loanbuddy.indore@gmail.com</a>
             </div>
             <div class="top-right">
                 <span><i class="fa-solid fa-location-dot"></i> Indore (Serving All India)</span>
@@ -140,6 +140,7 @@
                 <a href="#instant-enquiry">Instant Enquiry</a>
                 <a href="#services">Services</a>
                 <a href="#compare">Compare Loans</a>
+                <a href="#charges">Charges</a>
                 <a href="#calculator">EMI Calculator</a>
                 <a href="#eligibility">Eligibility Checker</a>
                 <a href="#partner">Become a Partner</a>
@@ -166,21 +167,24 @@
                 <p>Compare and secure loans from 35+ top Banks & NBFCs like SBI, HDFC, ICICI, Axis, and Bajaj Finserv. Enjoy 100% free doorstep service with express 24-48 hour disbursal.</p>
                 
                 <div class="hero-features">
-                    <div><i class="fa-solid fa-circle-check"></i> Rates </div>
+                    <div><i class="fa-solid fa-circle-check"></i> Lowest Interest Rates</div>
                     <div><i class="fa-solid fa-circle-check"></i> Collateral-Free Loans</div>
                     <div><i class="fa-solid fa-circle-check"></i> 100% Paperless Processing</div>
                     <div><i class="fa-solid fa-circle-check"></i> Zero Upfront Client Fees</div>
                 </div>
 
                 <div class="hero-buttons">
-                    <button class="btn btn-gold" onclick="openModal('Eligibility Check')">Check Eligibility <i class="fa-solid fa-arrow-right"></i></button>
+                    <a href="#eligibility" class="btn btn-gold">Check Eligibility <i class="fa-solid fa-arrow-right"></i></a>
                     <a href="#calculator" class="btn btn-secondary"><i class="fa-solid fa-calculator"></i> Calculate EMI</a>
                     <a href="#partner" class="btn btn-outline-white"><i class="fa-solid fa-handshake"></i> Become a Partner</a>
                 </div>
             </div>
 
             <!-- Hero Quick Quote / Instant Enquiry Form -->
-            <div class="hero-card">
+            <div class="hero-card-wrapper">
+                <div class="hero-float-badge hero-float-1" aria-hidden="true"><i class="fa-solid fa-circle-check"></i> Loan Approved</div>
+                <div class="hero-float-badge hero-float-2" aria-hidden="true"><i class="fa-solid fa-bolt"></i> Instant Approval</div>
+                <div class="hero-card">
                 <div class="card-header">
                     <h3>Get Instant Bank Offers</h3>
                     <p>Compare top 35+ lenders in 2 minutes</p>
@@ -216,6 +220,7 @@
                     <button type="submit" class="btn btn-gold btn-block">Get Free Quotes <i class="fa-solid fa-arrow-right"></i></button>
                     <div class="secure-note"><i class="fa-solid fa-lock"></i> 100% Confidential • No CIBIL Impact</div>
                 </form>
+                </div>
             </div>
         </div>
 
@@ -401,7 +406,7 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-building-columns"></i></div>
                     <h3>Loan Against Property</h3>
-                    <span class="rate-tag">Starting from 8.00% p.a.</span>
+                    <span class="rate-tag">Starting from 9.00% p.a.</span>
                     <p>Unlock high funds against residential, commercial or industrial property at low interest rates.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Up to 75% LTV Ratio</li>
@@ -429,7 +434,7 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <h3>Working Capital & CC/OD</h3>
-                    <span class="rate-tag">Starting from 8.00% p.a.</span>
+                    <span class="rate-tag">Starting from 10.50% p.a.</span>
                     <p>Cash credit (CC), Overdraft (OD) limits, Letter of Credit & Bank Guarantees for smooth business cash flow.</p>
                     <ul class="service-list">
                         <li><i class="fa-solid fa-check"></i> Pay Interest Only on Utilized Amount</li>
@@ -448,33 +453,40 @@
             <div class="section-title">
                 <span class="sub-title"><i class="fa-solid fa-route"></i> Simple & Transparent</span>
                 <h2>How Loan Buddy India Works</h2>
-                <p>From enquiry to disbursal in 4 easy, fully-tracked steps.</p>
+                <p>From enquiry to disbursal in 5 easy, fully-tracked steps.</p>
             </div>
 
-            <div class="timeline-grid">
+            <div class="timeline-grid timeline-grid-5">
+                <div class="timeline-connector" aria-hidden="true"></div>
                 <div class="timeline-step">
                     <div class="timeline-number">1</div>
                     <div class="timeline-icon"><i class="fa-solid fa-file-signature"></i></div>
-                    <h3>Submit Enquiry</h3>
+                    <h3>Apply</h3>
                     <p>Share your loan requirement via our Instant Enquiry form, WhatsApp, or a quick call.</p>
                 </div>
                 <div class="timeline-step">
                     <div class="timeline-number">2</div>
                     <div class="timeline-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                    <h3>Eligibility & Rate Match</h3>
+                    <h3>Eligibility</h3>
                     <p>We match your profile against 35+ Banks & NBFCs to find the lowest possible rate.</p>
                 </div>
                 <div class="timeline-step">
                     <div class="timeline-number">3</div>
                     <div class="timeline-icon"><i class="fa-solid fa-file-circle-check"></i></div>
-                    <h3>Doorstep Documentation</h3>
+                    <h3>Documentation</h3>
                     <p>Our loan manager collects documents and handles bank login at your convenience.</p>
                 </div>
                 <div class="timeline-step">
                     <div class="timeline-number">4</div>
+                    <div class="timeline-icon"><i class="fa-solid fa-stamp"></i></div>
+                    <h3>Approval</h3>
+                    <p>The partner bank/NBFC reviews and sanctions your loan as per their credit policy.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-number">5</div>
                     <div class="timeline-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
-                    <h3>Approval & Disbursal</h3>
-                    <p>Get sanctioned and receive funds directly in your account within 24-48 hours.</p>
+                    <h3>Disbursement</h3>
+                    <p>Get funds transferred directly to your account, typically within 24-48 hours.</p>
                 </div>
             </div>
         </div>
@@ -555,6 +567,73 @@
         </div>
     </section>
 
+    <!-- ==================== TRANSPARENT CHARGES SECTION ==================== -->
+    <section class="charges-section section-padding" id="charges">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title"><i class="fa-solid fa-scale-balanced"></i> No Hidden Charges</span>
+                <h2>Transparent Rate &amp; Fee Information</h2>
+                <p>Every charge below is disclosed upfront. Where a value depends on the lender you're finally matched with, we say so clearly instead of quoting a number we can't guarantee.</p>
+            </div>
+
+            <div class="charges-grid">
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-percent"></i></div>
+                    <h3>Interest Rate</h3>
+                    <p>See the current indicative starting rate for each loan type in the <a href="#services">Loan Products</a> and <a href="#compare">Compare Loans</a> sections above.</p>
+                    <span class="charge-badge charge-badge-variable">Varies by lender &amp; profile</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <h3>Processing Fee</h3>
+                    <p>A one-time fee charged by the bank/NBFC for processing your application, typically deducted from the disbursed amount.</p>
+                    <span class="charge-badge charge-badge-variable">Varies by lender — disclosed before you accept any offer</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Documentation Charges</h3>
+                    <p>Covers legal/technical verification of documents. Some lenders bundle this into the processing fee; others itemise it separately.</p>
+                    <span class="charge-badge charge-badge-variable">Varies by lender</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-landmark"></i></div>
+                    <h3>Government Charges</h3>
+                    <p>Statutory charges such as stamp duty, GST on fees, and franking — set by government, not by us or the lender.</p>
+                    <span class="charge-badge charge-badge-fixed">Fixed by government / statute</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <h3>Foreclosure Charges</h3>
+                    <p>Applicable if you close your loan fully before the tenure ends. Many floating-rate retail loans carry nil foreclosure charges as per RBI/NHB guidelines — always confirmed in your sanction letter.</p>
+                    <span class="charge-badge charge-badge-variable">Varies by lender &amp; loan type</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                    <h3>Part-Payment Charges</h3>
+                    <p>Applicable if you pay a portion of your outstanding principal ahead of schedule, reducing tenure or EMI.</p>
+                    <span class="charge-badge charge-badge-variable">Varies by lender</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-right-left"></i></div>
+                    <h3>Balance Transfer Charges</h3>
+                    <p>Covers moving your existing loan to a new lender for a lower rate — includes a switch fee at the new lender and possible foreclosure fee at the old one.</p>
+                    <span class="charge-badge charge-badge-variable">Varies by lender</span>
+                </div>
+                <div class="charge-card">
+                    <div class="charge-icon"><i class="fa-solid fa-receipt"></i></div>
+                    <h3>Taxes</h3>
+                    <p>GST is applicable on processing fees and most service charges, as per prevailing government rates.</p>
+                    <span class="charge-badge charge-badge-fixed">As per prevailing GST rate</span>
+                </div>
+            </div>
+
+            <div class="charges-disclaimer">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>Loan Buddy India acts as a loan facilitator. Final interest rates and all fees are set solely by the partner Bank/NBFC and confirmed in your official sanction letter before you accept any loan offer. We never charge you an upfront fee to process your enquiry.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== WORKING EMI CALCULATOR ==================== -->
     <section class="calculator-section section-padding" id="calculator">
         <div class="container">
@@ -620,19 +699,39 @@
                         </div>
                     </div>
 
-                    <!-- Visual Breakdown Progress Bar -->
+                    <!-- Visual Breakdown Donut Chart -->
                     <div class="calc-progress-wrapper">
-                        <div class="progress-labels">
-                            <span id="principalRatioLabel">Principal: 64%</span>
-                            <span id="interestRatioLabel">Interest: 36%</span>
-                        </div>
-                        <div class="calc-progress-bar">
-                            <div class="progress-principal" id="progressPrincipalBar" style="width: 64%;"></div>
-                            <div class="progress-interest" id="progressInterestBar" style="width: 36%;"></div>
+                        <div class="emi-chart-row">
+                            <div class="emi-donut" id="emiDonut" style="--p: 64;">
+                                <div class="emi-donut-hole">
+                                    <span id="emiDonutLabel">64%</span>
+                                    <small>Principal</small>
+                                </div>
+                            </div>
+                            <div class="emi-chart-legend">
+                                <div class="legend-item"><span class="legend-dot legend-principal"></span><span id="principalRatioLabel">Principal: 64%</span></div>
+                                <div class="legend-item"><span class="legend-dot legend-interest"></span><span id="interestRatioLabel">Interest: 36%</span></div>
+                            </div>
                         </div>
                     </div>
 
                     <button class="btn btn-gold btn-block" onclick="openModal('Calculated Loan')"><i class="fa-solid fa-paper-plane"></i> Apply With This Quote</button>
+                    <button type="button" class="btn btn-outline btn-block emi-download-btn" onclick="printEMISummary()"><i class="fa-solid fa-file-pdf"></i> Download EMI Summary (PDF)</button>
+
+                    <!-- Print-only clean summary, populated by calculateEMI() and shown only via window.print() -->
+                    <div class="emi-print-summary" id="emiPrintSummary" aria-hidden="true">
+                        <h2>Loan Buddy India — EMI Summary</h2>
+                        <table>
+                            <tr><td>Loan Amount</td><td id="printAmount">₹10,00,000</td></tr>
+                            <tr><td>Interest Rate</td><td id="printRate">8.5% p.a.</td></tr>
+                            <tr><td>Tenure</td><td id="printTenure">15 Years</td></tr>
+                            <tr><td>Monthly EMI</td><td id="printEmi">₹8,678</td></tr>
+                            <tr><td>Total Interest Payable</td><td id="printInterest">₹5,62,074</td></tr>
+                            <tr><td>Total Amount Payable</td><td id="printTotal">₹15,62,074</td></tr>
+                        </table>
+                        <p>This is an indicative estimate generated by the Loan Buddy India EMI Calculator on <span id="printDate"></span>. Actual EMI, rate and tenure depend on the final lender's sanction terms.</p>
+                        <p>Loan Buddy India · Indore, Madhya Pradesh · +91 9907704049 · loanbuddy.indore@gmail.com</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -701,6 +800,15 @@
                     <span class="badge-free"><i class="fa-solid fa-circle-check"></i> FOIR Bank Assessment</span>
                     <h3>Estimated Eligibility Result</h3>
 
+                    <div class="gauge-wrapper">
+                        <div class="gauge-meter">
+                            <div class="gauge-needle" id="gaugeNeedle" style="transform: rotate(calc(-90deg + (94 * 1.8deg)));"></div>
+                            <div class="gauge-center"><span id="gaugeScoreLabel">94%</span></div>
+                        </div>
+                        <div class="gauge-scale-labels"><span>Fair</span><span>Moderate</span><span>High</span></div>
+                        <p class="gauge-caption">Approval Probability Score</p>
+                    </div>
+
                     <div class="el-result-box">
                         <span>Max Eligible Loan Amount</span>
                         <h2 id="elMaxLoanDisplay">₹42,50,000</h2>
@@ -717,8 +825,8 @@
                             <strong id="elScoreDisplay" class="text-gold"><i class="fa-solid fa-star"></i> High (94%)</strong>
                         </div>
                         <div class="el-row">
-                            <span>Recommended Lenders:</span>
-                            <strong>SBI, HDFC, ICICI, Axis</strong>
+                            <span>Eligible Lender Network:</span>
+                            <strong>35+ Partner Banks &amp; NBFCs</strong>
                         </div>
                     </div>
 
@@ -1237,22 +1345,60 @@
                 <h2>Our Partner Banks & NBFCs</h2>
                 <p>We facilitate loans across India's most trusted financial institutions.</p>
             </div>
+        </div>
 
-            <div class="banks-flex">
-                <div class="bank-pill">HDFC Bank</div>
-                <div class="bank-pill">State Bank of India</div>
-                <div class="bank-pill">ICICI Bank</div>
-                <div class="bank-pill">Axis Bank</div>
-                <div class="bank-pill">Bajaj Finserv</div>
-                <div class="bank-pill">Tata Capital</div>
-                <div class="bank-pill">Kotak Mahindra Bank</div>
-                <div class="bank-pill">IDFC FIRST Bank</div>
-                <div class="bank-pill">Bank of Baroda</div>
-                <div class="bank-pill">IndusInd Bank</div>
-                <div class="bank-pill">PNB Housing</div>
-                <div class="bank-pill">Aditya Birla Finance</div>
+        <div class="banks-marquee" role="list" aria-label="Partner Banks and NBFCs">
+            <div class="banks-marquee-track">
+                <div class="bank-pill" role="listitem"><img src="assets/banks/sbi.svg" alt="State Bank of India" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/hdfc-bank.svg" alt="HDFC Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/icici-bank.svg" alt="ICICI Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/axis-bank.svg" alt="Axis Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/kotak-mahindra.svg" alt="Kotak Mahindra Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/idfc-first.svg" alt="IDFC FIRST Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/bank-of-baroda.svg" alt="Bank of Baroda" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/canara-bank.svg" alt="Canara Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/punjab-national-bank.svg" alt="Punjab National Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/bajaj-finserv.svg" alt="Bajaj Finserv" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/tata-capital.svg" alt="Tata Capital" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/aditya-birla-finance.svg" alt="Aditya Birla Finance" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/hero-fincorp.svg" alt="Hero FinCorp" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/lt-finance.svg" alt="L&amp;T Finance" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/muthoot-finance.svg" alt="Muthoot Finance" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/federal-bank.svg" alt="Federal Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/indusind-bank.svg" alt="IndusInd Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/yes-bank.svg" alt="Yes Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/au-small-finance.svg" alt="AU Small Finance Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/union-bank.svg" alt="Union Bank of India" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/indian-bank.svg" alt="Indian Bank" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/central-bank.svg" alt="Central Bank of India" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" role="listitem"><img src="assets/banks/poonawalla-fincorp.svg" alt="Poonawalla Fincorp" width="160" height="64" loading="lazy"></div>
+                <!-- Duplicate set for seamless marquee loop (aria-hidden — screen readers only need the list once) -->
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/sbi.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/hdfc-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/icici-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/axis-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/kotak-mahindra.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/idfc-first.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/bank-of-baroda.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/canara-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/punjab-national-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/bajaj-finserv.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/tata-capital.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/aditya-birla-finance.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/hero-fincorp.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/lt-finance.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/muthoot-finance.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/federal-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/indusind-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/yes-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/au-small-finance.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/union-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/indian-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/central-bank.svg" width="160" height="64" loading="lazy"></div>
+                <div class="bank-pill" aria-hidden="true"><img src="assets/banks/poonawalla-fincorp.svg" width="160" height="64" loading="lazy"></div>
             </div>
         </div>
+        <p class="banks-note container">Logos shown are placeholder graphics pending final artwork. Partner names are indicative of the lender network we work with; all logos remain the trademarks of their respective owners.</p>
     </section>
 
     <!-- ==================== FAQ ACCORDION ==================== -->
@@ -1341,7 +1487,7 @@
                         <i class="fa-solid fa-envelope-open-text"></i>
                         <div>
                             <h4>Official Business Emails</h4>
-                            <p><a href="mailto:sales@loanbuddyindia.com">sales@loanbuddyindia.com</a></p>
+                            <p><a href="mailto:loanbuddy.indore@gmail.com">loanbuddy.indore@gmail.com</a></p>
                                                     </div>
                     </div>
 
@@ -1443,41 +1589,92 @@
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
-        <div class="container footer-content">
+        <div class="container footer-content footer-content-4col">
             <div class="footer-brand">
                 <h3>Loan Buddy <span class="text-gold">India</span></h3>
-                <p>Premier financial advisory & loan consultancy in Indore, MP. Serving All India with 100% free loan processing.</p>
+                <p>Loan facilitation & financial advisory in Indore, MP, serving customers pan-India. We help you compare offers from partner Banks & NBFCs — final terms are always set by the lender.</p>
                 <div class="footer-contacts">
                     <p><i class="fa-solid fa-phone"></i> Call: <a href="tel:+919907704049">+91 9907704049</a> | <a href="tel:+919111112914">+91 9111112914</a></p>
                     <p><i class="fa-solid fa-envelope"></i> Email:
-<a href="mailto:sales@loanbuddyindia.com">sales@loanbuddyindia.com</a></p>
+<a href="mailto:loanbuddy.indore@gmail.com">loanbuddy.indore@gmail.com</a></p>
+                </div>
+                <!-- Social links — placeholder hrefs. Replace with real profile URLs before launch. -->
+                <div class="footer-social" aria-label="Social Media Links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <a href="#hero">Home</a>
                 <a href="#instant-enquiry">Instant Enquiry</a>
-                <a href="#services">Services</a>
                 <a href="#calculator">EMI Calculator</a>
                 <a href="#eligibility">Eligibility Checker</a>
+                <a href="#compare">Compare Loans</a>
+                <a href="#charges">Rates & Charges</a>
+                <a href="#faqs">FAQs</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="footer-links">
+                <h4>Our Services</h4>
+                <a href="#services">Personal Loan</a>
+                <a href="#services">Business Loan</a>
+                <a href="#services">Home Loan</a>
+                <a href="#services">Loan Against Property</a>
+                <a href="#services">Balance Transfer</a>
                 <a href="#partner">Become a Partner</a>
                 <a href="#refer-earn">Refer & Earn</a>
                 <a href="#careers">Careers</a>
-                <a href="#contact">Contact Us</a>
             </div>
             <div class="footer-links">
                 <h4>Legal & Policies</h4>
                 <a href="javascript:void(0)" onclick="openLegalModal('privacy')">Privacy Policy</a>
                 <a href="javascript:void(0)" onclick="openLegalModal('terms')">Terms & Conditions</a>
                 <a href="javascript:void(0)" onclick="openLegalModal('disclaimer')">Disclaimer</a>
+                <p class="footer-disclaimer">Loan Buddy India is a loan facilitator, not a bank or NBFC. We do not guarantee sanction. All loan approvals, interest rates and terms are at the sole discretion of the partner lender.</p>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p>© 2026 Loan Buddy India. All Rights Reserved.   Indore 452001.</p>
+                <p>© 2026 Loan Buddy India. All Rights Reserved. Indore 452001.</p>
             </div>
         </div>
     </footer>
+
+    <!-- ==================== ANALYTICS INTEGRATION POINTS ====================
+         Configurable placeholders — insert your real tracking IDs before launch.
+         Nothing is loaded by default; no fake IDs are present.
+
+         Google Tag Manager (place immediately after <body>, and the paired
+         <noscript> immediately after the opening <body> tag):
+         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+         Google Analytics 4 (place in <head>):
+         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+         <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+         gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+
+         Meta Pixel (place in <head>):
+         <script>!function(f,b,e,v,n,t,s){...}(window,document,'script',
+         'https://connect.facebook.net/en_US/fbevents.js');fbq('init','XXXXXXXXXXXXXXX');
+         fbq('track','PageView');</script>
+
+         Google Ads Conversion Tracking — fire on successful lead submission.
+         The cleanest hook is inside submitLead() in script.js, right after
+         "if (success) {" — call gtag('event','conversion',{'send_to':'AW-XXXXXXXXX/XXXXXXXXXXXXXXXXXXXX'})
+         there once you have a real Conversion ID, so every one of the 8 lead
+         forms fires a conversion automatically without touching each handler.
+
+         Google Search Console — verify via the HTML tag method by adding
+         <meta name="google-site-verification" content="YOUR_CODE"> in <head>,
+         or upload the verification file to the site root.
+    ==================================================================== -->
 
     <!-- ==================== FLOATING BUTTONS ==================== -->
     <div class="floating-buttons">
@@ -1497,8 +1694,10 @@
 
     <!-- Mobile Sticky Quick Action Bar -->
     <div class="mobile-sticky-bar">
-        <a href="tel:+919907704049" class="btn-sticky-call"><i class="fa-solid fa-phone"></i> Call Now</a>
-        <a href="https://wa.me/919111112914?text=Hi%20Loan%20Buddy%20India,%20I%20want%20to%20enquire%20about%20a%20loan." target="_blank" class="btn-sticky-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+919907704049" class="btn-sticky-item btn-sticky-call"><i class="fa-solid fa-phone"></i><span>Call</span></a>
+        <a href="https://wa.me/919111112914?text=Hi%20Loan%20Buddy%20India,%20I%20want%20to%20enquire%20about%20a%20loan." target="_blank" class="btn-sticky-item btn-sticky-wa"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+        <a href="#calculator" class="btn-sticky-item btn-sticky-calc"><i class="fa-solid fa-calculator"></i><span>Calculator</span></a>
+        <button type="button" class="btn-sticky-item btn-sticky-apply" onclick="openModal('Quick Loan')"><i class="fa-solid fa-paper-plane"></i><span>Apply</span></button>
     </div>
 
     <!-- ==================== APPLY MODAL ==================== -->
